@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class H_ResourceTracking : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public int hardCurrency;
+
+    public int playerEnergyCurrent;
+    public int playerEnergyMaximum;
+
+    public int workers;
+    public Dictionary<string, int> resources;
+
+    public void RestorePlayerEnergy(int energyToRestore)
     {
-        
+        playerEnergyCurrent += energyToRestore;
+
+        if (playerEnergyCurrent > playerEnergyMaximum)
+        {
+            playerEnergyCurrent = playerEnergyMaximum;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void CollectResources(string resourceToCollect, int resourceAmountToCollect)
     {
-        
+        if (resources.TryGetValue(resourceToCollect, out int currentResourceAmount))
+        {
+            currentResourceAmount += resourceAmountToCollect;
+        }
     }
 }
