@@ -5,12 +5,20 @@ using UnityEngine;
 public class H_ResourceTracking : MonoBehaviour
 {
     public int hardCurrency;
+    public int townLevel;
 
     public int playerEnergyCurrent;
     public int playerEnergyMaximum;
 
-    public int workers;
-    public Dictionary<string, int> resources;
+    public int avaliableWorkers;
+    public int[] maxWorkersAtTownLevel;
+
+    public int[] curResources;
+
+    private void Start()
+    {
+        avaliableWorkers = maxWorkersAtTownLevel[townLevel];
+    }
 
     public void RestorePlayerEnergy(int energyToRestore)
     {
@@ -22,11 +30,23 @@ public class H_ResourceTracking : MonoBehaviour
         }
     }
 
-    public void CollectResources(string resourceToCollect, int resourceAmountToCollect)
+    public void ExpendPlayerEnergy(int energyToUse)
     {
-        if (resources.TryGetValue(resourceToCollect, out int currentResourceAmount))
-        {
-            currentResourceAmount += resourceAmountToCollect;
-        }
+        playerEnergyCurrent -= energyToUse;
+    }
+
+    public void CollectResources(int resourceToCollect, int resourceAmountToCollect)
+    {
+        curResources[resourceToCollect] += resourceAmountToCollect;
+    }
+
+    public void BorrowWorker()
+    {
+        avaliableWorkers--;
+    }
+
+    public void ReturnWorker()
+    {
+        avaliableWorkers++;
     }
 }

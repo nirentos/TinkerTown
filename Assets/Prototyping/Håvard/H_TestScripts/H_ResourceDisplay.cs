@@ -5,7 +5,9 @@ using TMPro;
 
 public class H_ResourceDisplay : MonoBehaviour
 {
-    public TMP_Text[] resourceAmountCounter;
+    public TMP_Text[] resourceCounters;
+    public TMP_Text workerCounter;
+    public TMP_Text playerEnergyCounter;
 
     private H_ResourceTracking _resourceTracking;
 
@@ -16,27 +18,11 @@ public class H_ResourceDisplay : MonoBehaviour
 
     public void UpdateTrackers()
     {
-        for (int i = 0; i < _resourceTracking.resources.Count; i++)
+        for (int i = 0; i < resourceCounters.Length; i++)
         {
-            if (resourceAmountCounter[i] != null)
-            {
-                string resource = "";
-
-                foreach (var key in _resourceTracking.resources)
-                {
-                    if (key.Value == i)
-                    {
-                        resource = key.Key;
-                    }
-                }
-
-                resourceAmountCounter[i].text = _resourceTracking.resources[resource].ToString();
-            }
-            else
-            {
-                Debug.Log("Not Enough Counters");
-            }
+            resourceCounters[i].text = _resourceTracking.curResources[i].ToString();
         }
+        workerCounter.text = _resourceTracking.avaliableWorkers.ToString() + " / " + _resourceTracking.maxWorkersAtTownLevel[_resourceTracking.townLevel].ToString();
+        playerEnergyCounter.text = _resourceTracking.playerEnergyCurrent.ToString();
     }
-
 }
