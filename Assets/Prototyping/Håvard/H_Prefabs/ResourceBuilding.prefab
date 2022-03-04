@@ -1547,7 +1547,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5266420681965797319}
         m_TargetAssemblyTypeName: H_Building, Assembly-CSharp
-        m_MethodName: CollectButtonPressed
+        m_MethodName: UpgradePressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1618,12 +1618,12 @@ MonoBehaviour:
   resourceType: 0
   buildingLevel: 0
   curResourceAmount: 0
-  resourceMaxAtLevel: 140000002300000032000000
-  workerMaxAtLevel: 050000000a00000014000000
-  reqResToUpgradeAtLevel: 1400000032000000
+  resourceMaxAtLevel: 00000000
+  workerMaxAtLevel: 00000000
+  reqResToUpgradeAtLevel: 00000000
   resourceCount: {fileID: 365305929}
   workerCount: {fileID: 1645352052}
   prototypeHelpText: {fileID: 1332484283}
   hireWorkersButton: {fileID: 1949122374}
   fireWorkersButton: {fileID: 186812171}
-  upgradeButton: {fileID: 0}
+  upgradeButton: {fileID: 6701078114355196362}
