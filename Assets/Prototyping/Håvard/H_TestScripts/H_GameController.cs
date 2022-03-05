@@ -34,6 +34,7 @@ public class H_GameController : MonoBehaviour
         }
 
         resourceDisplay.UpdateTrackers();
+        resourceTracking.IdleWorkers(_buildingScr);
     }
 
     public void ExitGame()

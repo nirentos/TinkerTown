@@ -15,6 +15,8 @@ public class H_ResourceTracking : MonoBehaviour
 
     public int[] curResources;
 
+    private float idleWorkersCollectionTimer = 0;
+
     private void Start()
     {
         avaliableWorkers = maxWorkersAtTownLevel[townLevel];
@@ -48,5 +50,20 @@ public class H_ResourceTracking : MonoBehaviour
     public void ReturnWorker()
     {
         avaliableWorkers++;
+    }
+
+    public void IdleWorkers(H_Building[] h_BuildingsAr)
+    {
+        if (avaliableWorkers > 0 && idleWorkersCollectionTimer < 60)
+        {
+            idleWorkersCollectionTimer += Time.deltaTime;
+        }
+        else if (avaliableWorkers > 0 && idleWorkersCollectionTimer >= 60)
+        {
+            idleWorkersCollectionTimer = 0;
+
+            int i = Random.RandomRange(0, h_BuildingsAr.Length);
+            h_BuildingsAr[i].Collect(avaliableWorkers);
+        }
     }
 }

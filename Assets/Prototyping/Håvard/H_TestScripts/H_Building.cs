@@ -93,6 +93,12 @@ public class H_Building : MonoBehaviour
         curResourceAmount = 0;
     }
 
+    public void Collect(int collectAmount)
+    {
+        _resourceTracking.CollectResources(resourceType, collectAmount);
+        curResourceAmount -= collectAmount;
+    }
+
     public void HireWorkerPressed()
     {
         if (curWorkers < workerMaxAtLevel[buildingLevel] && _resourceTracking.avaliableWorkers > 0)
