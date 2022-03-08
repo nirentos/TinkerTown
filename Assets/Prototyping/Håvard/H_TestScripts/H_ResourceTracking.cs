@@ -16,6 +16,7 @@ public class H_ResourceTracking : MonoBehaviour
     public int[] curResources;
 
     private float idleWorkersCollectionTimer = 0;
+    public float idleWorkersTimeBetweenCollects = 30;
 
     private void Start()
     {
@@ -54,16 +55,19 @@ public class H_ResourceTracking : MonoBehaviour
 
     public void IdleWorkers(H_Building[] h_BuildingsAr)
     {
-        if (avaliableWorkers > 0 && idleWorkersCollectionTimer < 60)
+        if (avaliableWorkers > 0 && idleWorkersCollectionTimer < idleWorkersTimeBetweenCollects)
         {
             idleWorkersCollectionTimer += Time.deltaTime;
         }
-        else if (avaliableWorkers > 0 && idleWorkersCollectionTimer >= 60)
+        else if (avaliableWorkers > 0 && idleWorkersCollectionTimer >= idleWorkersTimeBetweenCollects)
         {
             idleWorkersCollectionTimer = 0;
 
-            int i = Random.RandomRange(0, h_BuildingsAr.Length);
-            h_BuildingsAr[i].Collect(avaliableWorkers);
+            for (int j = 0; j < avaliableWorkers; j++)
+            {
+                int i = Random.Range(0, h_BuildingsAr.Length);
+                h_BuildingsAr[i].Collect(1);
+            }
         }
     }
 }
