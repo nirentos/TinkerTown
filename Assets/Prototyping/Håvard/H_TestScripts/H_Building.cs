@@ -10,14 +10,12 @@ public class H_Building : MonoBehaviour
 
     #region floats
     public float resourceGenVar;
-
-    private float _timer = 0;
     #endregion
 
     #region integers
     public int resourceType;
     public int buildingLevel;
-    public int curResourceAmount;
+    public float curResourceAmount;
 
     public int[] resourceMaxAtLevel;
     public int[] workerMaxAtLevel;
@@ -37,27 +35,17 @@ public class H_Building : MonoBehaviour
 
     public void GenerateResource()
     {
-        if (_timer <= 1)
+        if (curResourceAmount < resourceMaxAtLevel[buildingLevel])
         {
-            _timer += 1 * Time.deltaTime;
+            curResourceAmount += resourceGenVar * curWorkers * Time.deltaTime;
         }
-        else
-        {
-            if (curResourceAmount < resourceMaxAtLevel[buildingLevel])
-            {
-                curResourceAmount += Mathf.RoundToInt(resourceGenVar * curWorkers);
-
-            }
-            _timer = 0;
-        }
-        
     }
 
     public void UpdateUI()
     {
-        resourceCount.text = curResourceAmount.ToString() + " / " + resourceMaxAtLevel[buildingLevel].ToString();
+        resourceCount.text = Mathf.FloorToInt(curResourceAmount).ToString() + " / " + resourceMaxAtLevel[buildingLevel].ToString();
         workerCount.text = curWorkers.ToString() + " / " + workerMaxAtLevel[buildingLevel].ToString();
-
+        
         if (curWorkers == workerMaxAtLevel[buildingLevel])
         {
             hireWorkersButton.SetActive(false);
@@ -89,11 +77,11 @@ public class H_Building : MonoBehaviour
 
     public void CollectButtonPressed()
     {
-        _resourceTracking.CollectResources(resourceType, curResourceAmount);
+        _resourceTracking.CollectResources(resourceType, Mathf.FloorToInt(curResourceAmount));
         curResourceAmount = 0;
     }
 
-    public void Collect(int collectAmount)
+    public void CollectByWorker(int collectAmount)
     {
         _resourceTracking.CollectResources(resourceType, collectAmount);
         curResourceAmount -= collectAmount;

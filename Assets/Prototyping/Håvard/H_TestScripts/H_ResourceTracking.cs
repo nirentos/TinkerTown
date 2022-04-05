@@ -66,7 +66,10 @@ public class H_ResourceTracking : MonoBehaviour
             for (int j = 0; j < avaliableWorkers; j++)
             {
                 int i = Random.Range(0, h_BuildingsAr.Length);
-                h_BuildingsAr[i].Collect(1);
+                if (Mathf.FloorToInt(h_BuildingsAr[i].curResourceAmount) > 0)
+                {
+                    h_BuildingsAr[i].CollectByWorker(1);
+                }
             }
         }
     }
