@@ -7,7 +7,11 @@ public class H_GameController : MonoBehaviour
     public GameObject[] buildingComp;
     public H_ResourceDisplay resourceDisplay;
     public H_ResourceTracking resourceTracking;
-    private H_Building[] _buildingScr;
+    [HideInInspector]public H_Building[] _buildingScr;
+
+    public GameObject camera;
+    public float maxBackgroundPan;
+    public float panAmount;
 
     // Start is called before the first frame update
     void Start()
@@ -35,8 +39,41 @@ public class H_GameController : MonoBehaviour
 
         resourceDisplay.UpdateTrackers();
         resourceTracking.IdleWorkers(_buildingScr);
+
+        if (camera.transform.position.x < -maxBackgroundPan)
+        {
+            camera.transform.position = new Vector3(-maxBackgroundPan+0.1f, camera.transform.position.y, camera.transform.position.z);
+        }
+
+        if (camera.transform.position.x > maxBackgroundPan)
+        {
+            camera.transform.position = new Vector3(maxBackgroundPan-0.1f, camera.transform.position.y, camera.transform.position.z); ;
+        }
     }
 
+    public void SwipeScreen(float direction)
+    {
+        if (direction > 0 && camera.transform.position.x < maxBackgroundPan)
+        {
+            for (int i = 0; i < 1; i++)
+            {
+                if (camera.transform.position.x < maxBackgroundPan)
+                {
+                    camera.transform.position = new Vector3(camera.transform.position.x - panAmount, camera.transform.position.y, camera.transform.position.z);
+                }
+            }
+        }
+        else if (direction < 0 && camera.transform.position.x > -maxBackgroundPan)
+        {
+            for (int i = 0; i < 1; i++)
+            {
+                if (camera.transform.position.x > -maxBackgroundPan)
+                {
+                    camera.transform.position = new Vector3(camera.transform.position.x + panAmount, camera.transform.position.y, camera.transform.position.z);
+                }
+            }
+        }
+    }
     public void ExitGame()
     {
         #if UNITY_EDITOR

@@ -7,21 +7,45 @@ using TMPro;
 public class H_Building : MonoBehaviour
 {
     private H_ResourceTracking _resourceTracking;
+    private H_GameController _gameController;
 
     #region floats
     public float resourceGenVar;
     #endregion
 
     #region integers
-    public int resourceType;
+    public int buildingAndResourceType;
     public int buildingLevel;
     public float curResourceAmount;
 
     public int[] resourceMaxAtLevel;
     public int[] workerMaxAtLevel;
-    public int[] reqResToUpgradeAtLevel;
 
     private int curWorkers = 0;
+    #endregion
+
+    #region building sprites
+    public Sprite[][] buildingSpriteCollection = new Sprite[5][];
+
+    public Sprite defaultSprite;
+
+    public Image[]buildingDisp;
+
+    public Sprite[] buildingType0;
+    public Sprite[] buildingType1;
+    public Sprite[] buildingType2;
+    #endregion
+
+    #region Upgrade Requirements
+    [Header("Upgrade Requirements")]
+    public int[] reqTownLevelToUpgradeAtLevel;
+    public int[] reqBuilding1LevelToUpgradeAtLevel;
+    public int[] reqBuilding2LevelToUpgradeAtLevel;
+    public int[] reqBuilding3LevelToUpgradeAtLevel;
+    public int[] reqRes1ToUpgradeAtLevel;
+    public int[] reqRes2ToUpgradeAtLevel;
+
+
     #endregion
 
     #region UI Elements
@@ -32,6 +56,51 @@ public class H_Building : MonoBehaviour
     public GameObject fireWorkersButton;
     public GameObject upgradeButton;
     #endregion
+
+    private void Awake()
+    {
+        _gameController = GetComponent<H_GameController>();
+
+        buildingSpriteCollection = new Sprite[5][];
+
+        buildingSpriteCollection[0].SetValue(buildingType0, buildingType0.Length);
+        buildingSpriteCollection[1].SetValue(buildingType1, buildingType1.Length);
+        buildingSpriteCollection[2].SetValue(buildingType2, buildingType2.Length);
+
+        for (int i = 0; i < buildingSpriteCollection.Length; i++)
+        {
+            for (int j = 0; j < buildingSpriteCollection[i].Length; j++)
+            {
+                if (buildingSpriteCollection[i][j] == null)
+                {
+                    buildingSpriteCollection[i][j] = defaultSprite;
+                }
+            }
+        }
+
+        for (int i = 0; i < buildingDisp.Length; i++)
+        {
+            if (buildingSpriteCollection[buildingAndResourceType][i] != null && i <= buildingLevel)
+            {
+                buildingDisp[i].sprite = buildingSpriteCollection[buildingAndResourceType][i];
+                buildingDisp[i].enabled = true;
+            }
+            else if (buildingSpriteCollection[buildingAndResourceType][i] != null && i > buildingLevel)
+            {
+                buildingDisp[i].sprite = buildingSpriteCollection[buildingAndResourceType][i];
+                buildingDisp[i].enabled = false;
+            }
+            else
+            {
+                buildingDisp[i].enabled = false;
+            }
+        }
+
+        if (buildingLevel > 0)
+        {
+            buildingDisp[0].enabled = false;
+        }
+    }
 
     public void GenerateResource()
     {
@@ -60,7 +129,7 @@ public class H_Building : MonoBehaviour
             fireWorkersButton.SetActive(true);
         }
 
-        if (reqResToUpgradeAtLevel[buildingLevel] <= _resourceTracking.curResources[resourceType] && buildingLevel < reqResToUpgradeAtLevel.Length && _resourceTracking.playerEnergyCurrent >= 5*(buildingLevel+1))
+        if (reqRes1ToUpgradeAtLevel[buildingLevel] <= _resourceTracking.curResources[buildingAndResourceType] && buildingLevel < reqRes1ToUpgradeAtLevel.Length && _resourceTracking.playerEnergyCurrent >= 5*(buildingLevel+1))
         {
             upgradeButton.SetActive(true);
         }
@@ -71,19 +140,44 @@ public class H_Building : MonoBehaviour
 
         if (prototypeHelpText != null)
         {
-            prototypeHelpText.text = "Resource " + resourceType.ToString();
+            prototypeHelpText.text = "Resource " + buildingAndResourceType.ToString();
         }
+    }
+
+    private bool Upgraderequirements()
+    {
+        if (reqTownLevelToUpgradeAtLevel[buildingLevel] <= _resourceTracking.townLevel || reqTownLevelToUpgradeAtLevel[buildingLevel] == null)
+        {
+            if (reqBuilding1LevelToUpgradeAtLevel[buildingLevel] <= _gameController._buildingScr[0].buildingLevel || reqBuilding1LevelToUpgradeAtLevel[buildingLevel] == null)
+            {
+                if (reqBuilding2LevelToUpgradeAtLevel[buildingLevel] <= _gameController._buildingScr[1].buildingLevel || reqBuilding2LevelToUpgradeAtLevel[buildingLevel] == null)
+                {
+                    if (reqBuilding3LevelToUpgradeAtLevel[buildingLevel] <= _gameController._buildingScr[2].buildingLevel || reqBuilding3LevelToUpgradeAtLevel[buildingLevel] == null)
+                    {
+                        if (reqRes1ToUpgradeAtLevel[buildingLevel] <= _resourceTracking.curResources[0] || reqRes1ToUpgradeAtLevel[buildingLevel] == null)
+                        {
+                            if (reqRes2ToUpgradeAtLevel[buildingLevel] <= _resourceTracking.curResources[1] || reqRes2ToUpgradeAtLevel[buildingLevel] == null)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 
     public void CollectButtonPressed()
     {
-        _resourceTracking.CollectResources(resourceType, Mathf.FloorToInt(curResourceAmount));
+        _resourceTracking.CollectResources(buildingAndResourceType, Mathf.FloorToInt(curResourceAmount));
         curResourceAmount = 0;
     }
 
     public void CollectByWorker(int collectAmount)
     {
-        _resourceTracking.CollectResources(resourceType, collectAmount);
+        _resourceTracking.CollectResources(buildingAndResourceType, collectAmount);
         curResourceAmount -= collectAmount;
     }
 
@@ -109,6 +203,7 @@ public class H_Building : MonoBehaviour
     {
         _resourceTracking.ExpendPlayerEnergy(5 * (buildingLevel + 1));
         buildingLevel++;
+        buildingDisp[buildingLevel].enabled = true;
     }
 
     public void InsertResourceTracker(H_ResourceTracking resTrackScr)
