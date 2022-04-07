@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 0
     path: "Assets/Prototyping/H\xE5vard/H_TestScene.unity"
     guid: caf4010f6a59ac04aabacce613b4370f
-  - enabled: 1
+  - enabled: 0
     path: Assets/MiniGames/minigameWoodWorking.unity
     guid: 3a1b73a9b1c30b94e977866fa700b6b1
+  - enabled: 1
+    path: Assets/Prototyping/Sander/gameViewTest.unity
+    guid: d1a604b2b39657044a3f1640cabcb136
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 2d83210c63cf791468a5c8c49adae70f, type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: e67a5529fd558184dac2098c5d5e7867, type: 2}
