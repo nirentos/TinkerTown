@@ -20,7 +20,7 @@ public class H_ResourceDisplay : MonoBehaviour
     {
         for (int i = 0; i < resourceCounters.Length; i++)
         {
-            resourceCounters[i].text = _resourceTracking.curResources[i].ToString();
+            resourceCounters[i].text = _resourceTracking.curResources[i + 1].ToString();
         }
         workerCounter.text = _resourceTracking.avaliableWorkers.ToString() + " / " + _resourceTracking.maxWorkersAtTownLevel[_resourceTracking.townLevel].ToString();
         playerEnergyCounter.text = _resourceTracking.playerEnergyCurrent.ToString();

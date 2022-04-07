@@ -12,7 +12,7 @@ public class H_PlayerInputs : MonoBehaviour
 
     private void Start()
     {
-        inputManager = InputManager.Instance;
+        inputManager = GetComponent<InputManager>();
         gameController = GetComponent<H_GameController>();
     }
 

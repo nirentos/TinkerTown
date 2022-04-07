@@ -18,6 +18,11 @@ public class H_ResourceTracking : MonoBehaviour
     private float idleWorkersCollectionTimer = 0;
     public float idleWorkersTimeBetweenCollects = 30;
 
+    public void OnApplicationQuit()
+    {
+        Save();
+    }
+
     private void Start()
     {
         avaliableWorkers = maxWorkersAtTownLevel[townLevel];
@@ -53,6 +58,12 @@ public class H_ResourceTracking : MonoBehaviour
         avaliableWorkers++;
     }
 
+    public void UpgradeTownLevel()
+    {
+        avaliableWorkers += maxWorkersAtTownLevel[townLevel];
+        townLevel++;
+    }
+
     public void IdleWorkers(H_Building[] h_BuildingsAr)
     {
         if (avaliableWorkers > 0 && idleWorkersCollectionTimer < idleWorkersTimeBetweenCollects)
@@ -65,11 +76,49 @@ public class H_ResourceTracking : MonoBehaviour
 
             for (int j = 0; j < avaliableWorkers; j++)
             {
-                int i = Random.Range(0, h_BuildingsAr.Length);
+                int i = Random.Range(1, 2);
                 if (Mathf.FloorToInt(h_BuildingsAr[i].curResourceAmount) > 0)
                 {
                     h_BuildingsAr[i].CollectByWorker(1);
                 }
+            }
+        }
+    }
+
+    public void Save()
+    {
+        PlayerPrefs.SetInt("hardCurrency", hardCurrency);
+        PlayerPrefs.SetInt("playerEnergy", playerEnergyCurrent);
+        PlayerPrefs.SetInt("townLevel", townLevel);
+        PlayerPrefs.SetInt("avaliableWorkers", avaliableWorkers);
+        for (int i = 0; i < curResources.Length; i++)
+        {
+            PlayerPrefs.SetInt("Tracking of Resource " + i.ToString(), curResources[i]);
+        }
+    }
+
+    public void Restore()
+    {
+        hardCurrency = PlayerPrefs.GetInt("hardCurrency");
+        playerEnergyCurrent = PlayerPrefs.GetInt("playerEnergy");
+        townLevel = PlayerPrefs.GetInt("townLevel");
+        avaliableWorkers = PlayerPrefs.GetInt("avaliableWorkers");
+        for (int i = 0; i < curResources.Length; i++)
+        {
+            curResources[i] = PlayerPrefs.GetInt("Tracking of Resource " + i.ToString());
+        }
+    }
+
+    public void OfflineCollection(int timePassed, H_Building[] h_BuildingsAr)
+    {
+        var resourcesToCollect = timePassed / idleWorkersTimeBetweenCollects;
+
+        for (int i = 0; i < resourcesToCollect; i++)
+        {
+            int j = Random.Range(1, 2);
+            if (Mathf.FloorToInt(h_BuildingsAr[j]._restorableResources) > 0)
+            {
+                h_BuildingsAr[j].CollectFromOfflineTime(1);
             }
         }
     }

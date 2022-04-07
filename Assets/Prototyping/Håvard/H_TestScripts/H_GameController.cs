@@ -9,9 +9,16 @@ public class H_GameController : MonoBehaviour
     public H_ResourceTracking resourceTracking;
     [HideInInspector]public H_Building[] _buildingScr;
 
+    [HideInInspector] public int[] buildingLevels;
+
     public GameObject camera;
     public float maxBackgroundPan;
     public float panAmount;
+
+    public void OnApplicationQuit()
+    {
+        Save();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +33,21 @@ public class H_GameController : MonoBehaviour
                 _buildingScr[i].InsertResourceTracker(resourceTracking);
             }
         }
+
+        buildingLevels = new int[_buildingScr.Length];
+
+        Debug.Log("buildingscr contains " + _buildingScr.Length.ToString());
+        for (int i = 0; i < _buildingScr.Length; i++)
+        {
+            Debug.Log("buildingscr " + i.ToString() + " contains " + _buildingScr[i].gameObject.name);
+        }
+
+        Restore();
+        for (int i = 0; i < _buildingScr.Length; i++)
+        {
+            _buildingScr[i].Restore();
+        }
+        resourceTracking.Restore();
     }
 
     // Update is called once per frame
@@ -35,6 +57,8 @@ public class H_GameController : MonoBehaviour
         {
             _buildingScr[i].UpdateUI();
             _buildingScr[i].GenerateResource();
+            buildingLevels[i] = _buildingScr[i].buildingLevel;
+            _buildingScr[i].BuildingLevelsInformant(buildingLevels);
         }
 
         resourceDisplay.UpdateTrackers();
@@ -81,5 +105,29 @@ public class H_GameController : MonoBehaviour
         #else
             Application.Quit();
         #endif
+    }
+
+    public void Save()
+    {
+        PlayerPrefs.SetString("Game quit at", System.DateTime.Now.ToString());
+    }
+
+    public void Restore()
+    {
+        string timeOfExit = PlayerPrefs.GetString("Game quit at");
+
+        var curDate = System.DateTime.Now;
+
+        System.TimeSpan duration = curDate - System.DateTime.Parse(timeOfExit);
+
+        var passedTimeInSeconds = Mathf.FloorToInt((float)duration.TotalSeconds);
+
+        for (int i = 0; i < _buildingScr.Length; i++)
+        {
+            _buildingScr[i].RestoreProductionTime(passedTimeInSeconds);
+        }
+
+
+        resourceTracking.OfflineCollection(passedTimeInSeconds, _buildingScr);
     }
 }
