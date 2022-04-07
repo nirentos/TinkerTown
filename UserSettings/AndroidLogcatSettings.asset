@@ -1,107 +1,30 @@
 {
     "m_SelectedDeviceId": "RF8M41K86CZ",
     "m_SelectedPackage": {
-<<<<<<< HEAD
-        "deviceId": "RF8M41K86CZ",
-        "name": "com.DefaultCompany.com.unity.template.mobile2D",
-        "processId": 15681,
-=======
         "deviceId": "",
         "name": "",
         "processId": 0,
->>>>>>> main
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
         {
-            "deviceId": "HQ616519DC",
+            "deviceId": "RF8M41K86CZ",
             "name": "com.DefaultCompany.com.unity.template.mobile2D",
-            "processId": 10644,
+            "processId": 20055,
             "exited": true
         },
         {
-            "deviceId": "HQ616519DC",
-            "name": "com.DefaultCompany.com.unity.template.mobile2D",
-<<<<<<< HEAD
-            "processId": 10644,
-            "exited": false
-        },
-        {
             "deviceId": "RF8M41K86CZ",
             "name": "com.DefaultCompany.com.unity.template.mobile2D",
-            "processId": 3076,
-            "exited": false
-        },
-        {
-            "deviceId": "RF8M41K86CZ",
-            "name": "com.DefaultCompany.com.unity.template.mobile2D",
-            "processId": 3568,
-            "exited": false
-        },
-        {
-            "deviceId": "RF8M41K86CZ",
-            "name": "com.DefaultCompany.com.unity.template.mobile2D",
-            "processId": 8651,
-            "exited": false
-        },
-        {
-            "deviceId": "RF8M41K86CZ",
-            "name": "com.DefaultCompany.com.unity.template.mobile2D",
-            "processId": 11904,
-            "exited": false
-        },
-        {
-            "deviceId": "RF8M41K86CZ",
-            "name": "com.DefaultCompany.com.unity.template.mobile2D",
-            "processId": 13307,
-            "exited": false
-        },
-        {
-            "deviceId": "RF8M41K86CZ",
-            "name": "com.DefaultCompany.com.unity.template.mobile2D",
-            "processId": 13619,
-            "exited": false
-        },
-        {
-            "deviceId": "RF8M41K86CZ",
-            "name": "com.DefaultCompany.com.unity.template.mobile2D",
-            "processId": 14995,
-            "exited": false
-        },
-        {
-            "deviceId": "RF8M41K86CZ",
-            "name": "com.DefaultCompany.com.unity.template.mobile2D",
-            "processId": 15394,
-            "exited": false
-        },
-        {
-            "deviceId": "RF8M41K86CZ",
-            "name": "com.DefaultCompany.com.unity.template.mobile2D",
-            "processId": 15681,
-            "exited": false
-=======
-            "processId": 18342,
+            "processId": 22511,
             "exited": true
         },
         {
-            "deviceId": "HQ616519DC",
-            "name": "com.DefaultCompany.com.unity.template.mobile2D",
-            "processId": 19723,
-            "exited": true
-        },
-        {
-            "deviceId": "HQ616519DC",
-            "name": "com.DefaultCompany.com.unity.template.mobile2D",
-            "processId": 20864,
-            "exited": true
-        },
-        {
-            "deviceId": "HQ616519DC",
-            "name": "com.DefaultCompany.com.unity.template.mobile2D",
-            "processId": 22527,
-            "exited": true
->>>>>>> main
+            "deviceId": "RF8M41K86CZ",
+            "name": "com.unity3d.mobileremote",
+            "processId": 1553,
+            "exited": false
         }
     ],
     "m_Tags": {
