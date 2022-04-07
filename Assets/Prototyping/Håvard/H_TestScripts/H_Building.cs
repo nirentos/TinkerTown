@@ -8,6 +8,9 @@ public class H_Building : MonoBehaviour
 {
     private H_ResourceTracking _resourceTracking;
     private H_GameController _gameController;
+    private int[] _buildingLevels;
+
+    [HideInInspector]public int _restorableResources;
 
     #region floats
     public float resourceGenVar;
@@ -16,6 +19,7 @@ public class H_Building : MonoBehaviour
     #region integers
     public int buildingAndResourceType;
     public int buildingLevel;
+    public int maxBuildingLevel;
     public float curResourceAmount;
 
     public int[] resourceMaxAtLevel;
@@ -25,7 +29,7 @@ public class H_Building : MonoBehaviour
     #endregion
 
     #region building sprites
-    public Sprite[][] buildingSpriteCollection = new Sprite[5][];
+    public List<Sprite[]> buildingSpriteCollection = new List<Sprite[]>();
 
     public Sprite defaultSprite;
 
@@ -49,25 +53,38 @@ public class H_Building : MonoBehaviour
     #endregion
 
     #region UI Elements
+    [Header("UI Elements")]
+    [SerializeField]private bool visibleUI;
+
     public TMP_Text resourceCount;
     public TMP_Text workerCount;
     public TMP_Text prototypeHelpText;
     public GameObject hireWorkersButton;
     public GameObject fireWorkersButton;
     public GameObject upgradeButton;
+
+    [Header("UI Buttons")]
+    public Button HireWorker;
+    public Button FireWorker;
+    public Button Collect;
+    public Button Upgrade;
+    public Button Exit;
     #endregion
+
+    public void OnApplicationQuit()
+    {
+        Save();
+    }
 
     private void Awake()
     {
         _gameController = GetComponent<H_GameController>();
 
-        buildingSpriteCollection = new Sprite[5][];
+        buildingSpriteCollection.Add(buildingType0);
+        buildingSpriteCollection.Add(buildingType1);
+        buildingSpriteCollection.Add(buildingType2);
 
-        buildingSpriteCollection[0].SetValue(buildingType0, buildingType0.Length);
-        buildingSpriteCollection[1].SetValue(buildingType1, buildingType1.Length);
-        buildingSpriteCollection[2].SetValue(buildingType2, buildingType2.Length);
-
-        for (int i = 0; i < buildingSpriteCollection.Length; i++)
+        for (int i = 0; i < buildingSpriteCollection.Count; i++)
         {
             for (int j = 0; j < buildingSpriteCollection[i].Length; j++)
             {
@@ -78,27 +95,37 @@ public class H_Building : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < buildingDisp.Length; i++)
+        for (int j = 0; j < buildingDisp.Length; j++)
         {
-            if (buildingSpriteCollection[buildingAndResourceType][i] != null && i <= buildingLevel)
+            if (j < buildingSpriteCollection[buildingAndResourceType].Length)
             {
-                buildingDisp[i].sprite = buildingSpriteCollection[buildingAndResourceType][i];
-                buildingDisp[i].enabled = true;
-            }
-            else if (buildingSpriteCollection[buildingAndResourceType][i] != null && i > buildingLevel)
-            {
-                buildingDisp[i].sprite = buildingSpriteCollection[buildingAndResourceType][i];
-                buildingDisp[i].enabled = false;
+                buildingDisp[j].sprite = buildingSpriteCollection[buildingAndResourceType][j];
             }
             else
             {
-                buildingDisp[i].enabled = false;
+                buildingDisp[j].enabled = false;
             }
         }
 
+        for (int j = 1; j < buildingDisp.Length; j++)
+        {
+            buildingDisp[j].gameObject.SetActive(false);
+        }
+
+        buildingDisp[0].gameObject.SetActive(true);
+
         if (buildingLevel > 0)
         {
-            buildingDisp[0].enabled = false;
+            Debug.Log("building " + gameObject.name + " is of level " + buildingLevel.ToString());
+            for (int i = 1; i < buildingDisp.Length; i++)
+            {
+                if (i <= buildingLevel)
+                {
+                    Debug.Log("Activating building disp " + i.ToString());
+                    buildingDisp[0].gameObject.SetActive(false);
+                    buildingDisp[i].gameObject.SetActive(true);
+                }
+            }
         }
     }
 
@@ -112,53 +139,90 @@ public class H_Building : MonoBehaviour
 
     public void UpdateUI()
     {
-        resourceCount.text = Mathf.FloorToInt(curResourceAmount).ToString() + " / " + resourceMaxAtLevel[buildingLevel].ToString();
-        workerCount.text = curWorkers.ToString() + " / " + workerMaxAtLevel[buildingLevel].ToString();
+        if (visibleUI)
+        {
+            //resourceCount.text = Mathf.FloorToInt(curResourceAmount).ToString() + " / " + resourceMaxAtLevel[buildingLevel].ToString();
+            workerCount.text = curWorkers.ToString() + " / " + workerMaxAtLevel[buildingLevel].ToString();
+
+            if (buildingAndResourceType == 0)
+            {
+                hireWorkersButton.SetActive(false);
+                fireWorkersButton.SetActive(false);
+                workerCount.gameObject.SetActive(false);
+                resourceCount.gameObject.SetActive(false);
+                prototypeHelpText.gameObject.SetActive(false);
+                Collect.gameObject.SetActive(false);
+            }
+            else
+            {
+                hireWorkersButton.SetActive(true);
+                fireWorkersButton.SetActive(true);
+                workerCount.gameObject.SetActive(true);
+                resourceCount.gameObject.SetActive(true);
+                prototypeHelpText.gameObject.SetActive(true);
+                Collect.gameObject.SetActive(true);
+            }
+
+            if (curWorkers == workerMaxAtLevel[buildingLevel])
+            {
+                hireWorkersButton.SetActive(false);
+            }
+            else if (curWorkers == 0)
+            {
+                fireWorkersButton.SetActive(false);
+            }
+            else if (buildingAndResourceType != 0)
+            {
+                hireWorkersButton.SetActive(true);
+                fireWorkersButton.SetActive(true);
+            }
+
+            if (buildingAndResourceType == 0)
+            {
+                Collect.gameObject.SetActive(false);
+            }
+
+            if (Upgraderequirements())
+            {
+                upgradeButton.SetActive(true);
+            }
+            else
+            {
+                upgradeButton.SetActive(false);
+            }
         
-        if (curWorkers == workerMaxAtLevel[buildingLevel])
-        {
-            hireWorkersButton.SetActive(false);
-        }
-        else if (curWorkers == 0)
-        {
-            fireWorkersButton.SetActive(false);
-        }
-        else
-        {
-            hireWorkersButton.SetActive(true);
-            fireWorkersButton.SetActive(true);
+            if (prototypeHelpText != null)
+            {
+                prototypeHelpText.text = "Resource " + buildingAndResourceType.ToString();
+            }
+
+            if (buildingAndResourceType != 0)
+            {
+                resourceCount.text = Mathf.FloorToInt(curResourceAmount).ToString() + " / " + resourceMaxAtLevel[buildingLevel].ToString();
+                workerCount.text = curWorkers.ToString() + " / " + workerMaxAtLevel[buildingLevel].ToString();
+            }
         }
 
-        if (reqRes1ToUpgradeAtLevel[buildingLevel] <= _resourceTracking.curResources[buildingAndResourceType] && buildingLevel < reqRes1ToUpgradeAtLevel.Length && _resourceTracking.playerEnergyCurrent >= 5*(buildingLevel+1))
-        {
-            upgradeButton.SetActive(true);
-        }
-        else
-        {
-            upgradeButton.SetActive(false);
-        }
-
-        if (prototypeHelpText != null)
-        {
-            prototypeHelpText.text = "Resource " + buildingAndResourceType.ToString();
-        }
     }
 
     private bool Upgraderequirements()
     {
-        if (reqTownLevelToUpgradeAtLevel[buildingLevel] <= _resourceTracking.townLevel || reqTownLevelToUpgradeAtLevel[buildingLevel] == null)
+        if (buildingLevel < maxBuildingLevel && reqTownLevelToUpgradeAtLevel[buildingLevel] <= _resourceTracking.townLevel)
         {
-            if (reqBuilding1LevelToUpgradeAtLevel[buildingLevel] <= _gameController._buildingScr[0].buildingLevel || reqBuilding1LevelToUpgradeAtLevel[buildingLevel] == null)
+            if (buildingLevel < maxBuildingLevel && reqBuilding1LevelToUpgradeAtLevel[buildingLevel] <= _buildingLevels[0])
             {
-                if (reqBuilding2LevelToUpgradeAtLevel[buildingLevel] <= _gameController._buildingScr[1].buildingLevel || reqBuilding2LevelToUpgradeAtLevel[buildingLevel] == null)
+                if (buildingLevel < maxBuildingLevel && reqBuilding2LevelToUpgradeAtLevel[buildingLevel] <= _buildingLevels[1])
                 {
-                    if (reqBuilding3LevelToUpgradeAtLevel[buildingLevel] <= _gameController._buildingScr[2].buildingLevel || reqBuilding3LevelToUpgradeAtLevel[buildingLevel] == null)
+                    if (buildingLevel < maxBuildingLevel && reqBuilding3LevelToUpgradeAtLevel[buildingLevel] <= _buildingLevels[2])
                     {
-                        if (reqRes1ToUpgradeAtLevel[buildingLevel] <= _resourceTracking.curResources[0] || reqRes1ToUpgradeAtLevel[buildingLevel] == null)
+                        if (buildingLevel < maxBuildingLevel && reqRes1ToUpgradeAtLevel[buildingLevel] <= _resourceTracking.curResources[1])
                         {
-                            if (reqRes2ToUpgradeAtLevel[buildingLevel] <= _resourceTracking.curResources[1] || reqRes2ToUpgradeAtLevel[buildingLevel] == null)
+                            if (buildingLevel < maxBuildingLevel && reqRes2ToUpgradeAtLevel[buildingLevel] <= _resourceTracking.curResources[2])
                             {
-                                return true;
+                                if (_resourceTracking.playerEnergyCurrent >= 5 * (buildingLevel + 1))
+                                {
+                                    return true;
+                                }
                             }
                         }
                     }
@@ -171,8 +235,11 @@ public class H_Building : MonoBehaviour
 
     public void CollectButtonPressed()
     {
-        _resourceTracking.CollectResources(buildingAndResourceType, Mathf.FloorToInt(curResourceAmount));
-        curResourceAmount = 0;
+        if (visibleUI)
+        {
+            _resourceTracking.CollectResources(buildingAndResourceType, Mathf.FloorToInt(curResourceAmount));
+            curResourceAmount = 0;
+        }
     }
 
     public void CollectByWorker(int collectAmount)
@@ -183,7 +250,7 @@ public class H_Building : MonoBehaviour
 
     public void HireWorkerPressed()
     {
-        if (curWorkers < workerMaxAtLevel[buildingLevel] && _resourceTracking.avaliableWorkers > 0)
+        if (curWorkers < workerMaxAtLevel[buildingLevel] && _resourceTracking.avaliableWorkers > 0 && visibleUI)
         {
             curWorkers++;
             _resourceTracking.BorrowWorker();
@@ -192,7 +259,7 @@ public class H_Building : MonoBehaviour
 
     public void FireWorkerPressed()
     {
-        if (curWorkers > 0)
+        if (curWorkers > 0 && visibleUI)
         {
             curWorkers--;
             _resourceTracking.ReturnWorker();
@@ -201,13 +268,105 @@ public class H_Building : MonoBehaviour
 
     public void UpgradePressed()
     {
-        _resourceTracking.ExpendPlayerEnergy(5 * (buildingLevel + 1));
-        buildingLevel++;
-        buildingDisp[buildingLevel].enabled = true;
+        if (Upgraderequirements() && visibleUI)
+        {
+            _resourceTracking.ExpendPlayerEnergy(5 * (buildingLevel + 1));
+
+            _resourceTracking.CollectResources(1, -reqRes1ToUpgradeAtLevel[buildingLevel]);
+            _resourceTracking.CollectResources(2, -reqRes2ToUpgradeAtLevel[buildingLevel]);
+
+            buildingLevel++;
+            buildingDisp[buildingLevel].gameObject.SetActive(true);
+
+            if (buildingAndResourceType == 0 && buildingLevel == 2)
+            {
+                _resourceTracking.UpgradeTownLevel();
+            }
+        }
+        
+    }
+
+    public void ExitPressed()
+    {
+        if (visibleUI)
+        {
+            visibleUI = false;
+            HireWorker.onClick.RemoveListener(HireWorkerPressed);
+            FireWorker.onClick.RemoveListener(FireWorkerPressed);
+            Upgrade.onClick.RemoveListener(UpgradePressed);
+            Exit.onClick.RemoveListener(ExitPressed);
+        }
+        
+    }
+
+    public void EnterBuildingPressed()
+    {
+        visibleUI = true;
     }
 
     public void InsertResourceTracker(H_ResourceTracking resTrackScr)
     {
         _resourceTracking = resTrackScr;
+    }
+
+    public void BuildingLevelsInformant(int[] info)
+    {
+        _buildingLevels = new int[info.Length];
+        for (int i = 0; i < _buildingLevels.Length; i++)
+        {
+            _buildingLevels[i] = info[i];
+        }
+    }
+
+    public void Save()
+    {
+        PlayerPrefs.SetInt("building " + buildingAndResourceType.ToString() + "buildingLevel", buildingLevel);
+        PlayerPrefs.SetFloat("building " + buildingAndResourceType.ToString() + " curResourceAmount", curResourceAmount);
+        PlayerPrefs.SetInt("building " + buildingAndResourceType.ToString() + " curworkers", curWorkers);
+        PlayerPrefs.SetString("building " + buildingAndResourceType.ToString() + " quit at", System.DateTime.Now.ToString());
+    }
+
+    public void Restore()
+    {
+        int buildingLvl = PlayerPrefs.GetInt("building " + buildingAndResourceType.ToString() + "buildingLevel");
+        float resourcesToRestore = PlayerPrefs.GetFloat("building " + buildingAndResourceType.ToString() + " curResourceAmount");
+        int workersToRestore = PlayerPrefs.GetInt("building " + buildingAndResourceType.ToString() + " curworkers");
+
+        buildingLevel = buildingLvl;
+        curResourceAmount = resourcesToRestore;
+        curWorkers = workersToRestore;
+
+        if (buildingLevel > 0)
+        {
+            buildingDisp[0].gameObject.SetActive(false);
+            for (int i = 1; i <= buildingLevel; i++)
+            {
+                buildingDisp[i].gameObject.SetActive(true);
+            }
+        }
+        Debug.Log("attempted to restore building information");
+    }
+
+    public void RestoreProductionTime(int passedTime)
+    {
+        _restorableResources = Mathf.FloorToInt(resourceGenVar * curWorkers * passedTime);
+
+        if (curResourceAmount < resourceMaxAtLevel[buildingLevel])
+        {
+            for (int i = 0; i < _restorableResources; i++)
+            {
+                if (curResourceAmount < resourceMaxAtLevel[buildingLevel] && _restorableResources > 0)
+                {
+                    curResourceAmount+=1;
+                    _restorableResources--;
+                }
+            }
+        }
+    }
+
+    public void CollectFromOfflineTime(int resourceAmount)
+    {
+        _resourceTracking.CollectResources(buildingAndResourceType, resourceAmount);
+        _restorableResources -= resourceAmount;
     }
 }

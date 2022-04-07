@@ -285,13 +285,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceGenVar: 0
-  resourceType: 0
+  buildingAndResourceType: 0
   buildingLevel: 0
+  maxBuildingLevel: 0
   curResourceAmount: 0
-  resourceMaxAtLevel: 
-  workerMaxAtLevel: 
-  reqResToUpgradeAtLevel: 
-  defaultSprite: {fileID: 0}
+  resourceMaxAtLevel: 0000000000000000000000000000000000000000
+  workerMaxAtLevel: 0000000000000000000000000000000000000000
+  defaultSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   buildingDisp:
   - {fileID: 2714509135180069377}
   - {fileID: 8173094647324022489}
@@ -299,15 +299,42 @@ MonoBehaviour:
   - {fileID: 1207783178384725956}
   - {fileID: 460474880262450179}
   - {fileID: 3840506451584825241}
-  buildingType0: []
-  buildingType1: []
-  buildingType2: []
+  buildingType0:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: c43d32cbc820812408ba7e6fb1fb0844, type: 3}
+  - {fileID: 21300000, guid: 9f6d458b0c0f4e44a8455a310a747400, type: 3}
+  - {fileID: 21300000, guid: 5d278cfadd3bd444ba7c02eb0a0d2dec, type: 3}
+  - {fileID: 21300000, guid: aa226bea4f52a5846937cefca57d7a57, type: 3}
+  buildingType1:
+  - {fileID: 21300000, guid: faebb2e368fd75843bda70d07881bfb1, type: 3}
+  - {fileID: 21300000, guid: 3a3a4e049f9300a45aec59d7f741a563, type: 3}
+  - {fileID: 21300000, guid: 5926dee0b42d6bd4da52114b64a31209, type: 3}
+  - {fileID: 21300000, guid: 0093c53a8f14e944d8988c1afa55cbe5, type: 3}
+  - {fileID: 21300000, guid: 0a6e2c772df4cf04f849f26ffb9c8e14, type: 3}
+  buildingType2:
+  - {fileID: 21300000, guid: 161d36b5ce7e88c4784a99362d3ab39b, type: 3}
+  - {fileID: 21300000, guid: 7b4fe69e420b3e147bc9a2a0fd5550c2, type: 3}
+  - {fileID: 21300000, guid: 2a1bf4a69c8b261468f2b83260ad91ef, type: 3}
+  - {fileID: 21300000, guid: 45633fb37d012fe42862b836f2783a02, type: 3}
+  - {fileID: 21300000, guid: bfa1f1266eecccc4fa0745db01bd81ff, type: 3}
+  - {fileID: 21300000, guid: 5bb9abcc7c28c7949bcbab5ce3eca21c, type: 3}
+  reqTownLevelToUpgradeAtLevel: 0000000000000000000000000000000000000000
+  reqBuilding1LevelToUpgradeAtLevel: 0000000000000000000000000000000000000000
+  reqBuilding2LevelToUpgradeAtLevel: 0000000000000000000000000000000000000000
+  reqBuilding3LevelToUpgradeAtLevel: 0000000000000000000000000000000000000000
+  reqRes1ToUpgradeAtLevel: 0000000000000000000000000000000000000000
+  reqRes2ToUpgradeAtLevel: 0000000000000000000000000000000000000000
   resourceCount: {fileID: 0}
   workerCount: {fileID: 0}
   prototypeHelpText: {fileID: 0}
   hireWorkersButton: {fileID: 0}
   fireWorkersButton: {fileID: 0}
   upgradeButton: {fileID: 0}
+  HireWorker: {fileID: 0}
+  FireWorker: {fileID: 0}
+  Collect: {fileID: 0}
+  Upgrade: {fileID: 0}
+  Exit: {fileID: 0}
 --- !u!1 &5261063654431882987
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,7 +559,7 @@ GameObject:
   - component: {fileID: 6111780733133443892}
   - component: {fileID: 6111780733133443893}
   m_Layer: 0
-  m_Name: BuildingVisual
+  m_Name: InteractionButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -580,7 +607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6117647}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -641,34 +668,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 3823295578262188436}
+        m_TargetAssemblyTypeName: H_Building, Assembly-CSharp
+        m_MethodName: EnterBuildingPressed
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -770,7 +773,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3175045606383374182
 RectTransform:
   m_ObjectHideFlags: 0

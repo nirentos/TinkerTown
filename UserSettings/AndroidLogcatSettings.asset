@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "HQ616519DC",
     "m_SelectedPackage": {
-        "deviceId": "HQ616519DC",
-        "name": "com.DefaultCompany.com.unity.template.mobile2D",
-        "processId": 10644,
+        "deviceId": "",
+        "name": "",
+        "processId": 0,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -11,14 +11,32 @@
         {
             "deviceId": "HQ616519DC",
             "name": "com.DefaultCompany.com.unity.template.mobile2D",
-            "processId": 10210,
-            "exited": false
+            "processId": 10644,
+            "exited": true
         },
         {
             "deviceId": "HQ616519DC",
             "name": "com.DefaultCompany.com.unity.template.mobile2D",
-            "processId": 10644,
-            "exited": false
+            "processId": 18342,
+            "exited": true
+        },
+        {
+            "deviceId": "HQ616519DC",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 19723,
+            "exited": true
+        },
+        {
+            "deviceId": "HQ616519DC",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 20864,
+            "exited": true
+        },
+        {
+            "deviceId": "HQ616519DC",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 22527,
+            "exited": true
         }
     ],
     "m_Tags": {
