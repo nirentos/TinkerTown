@@ -44,6 +44,33 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""TapPos"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""4e049aa5-fe1d-4ee5-a8b6-7b50d56120f9"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tap"",
+                    ""type"": ""Button"",
+                    ""id"": ""e15d6751-f08e-4004-bf0e-54bfa523c870"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""TiltControlls"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""4539c6f0-4242-4c1f-bca8-e63a88b41649"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -90,6 +117,61 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Touch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c0517b08-bb73-4f1f-8858-4e8952f6833e"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TapPos"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""79813b29-2ecb-434c-ab43-000d84cfcaec"",
+                    ""path"": ""<Touchscreen>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TapPos"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""59abe000-d48e-4380-b3b5-8379d1269695"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": ""Tap"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f64efd84-ba08-431e-b258-d0a9689c0822"",
+                    ""path"": ""<Mouse>/press"",
+                    ""interactions"": ""Tap"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f3a99341-f894-41ed-aebf-77f727193a86"",
+                    ""path"": ""<Gyroscope>/angularVelocity"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TiltControlls"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -100,6 +182,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_TouchPos = m_Player.FindAction("TouchPos", throwIfNotFound: true);
         m_Player_Touch = m_Player.FindAction("Touch", throwIfNotFound: true);
+        m_Player_TapPos = m_Player.FindAction("TapPos", throwIfNotFound: true);
+        m_Player_Tap = m_Player.FindAction("Tap", throwIfNotFound: true);
+        m_Player_TiltControlls = m_Player.FindAction("TiltControlls", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -161,12 +246,18 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_TouchPos;
     private readonly InputAction m_Player_Touch;
+    private readonly InputAction m_Player_TapPos;
+    private readonly InputAction m_Player_Tap;
+    private readonly InputAction m_Player_TiltControlls;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @TouchPos => m_Wrapper.m_Player_TouchPos;
         public InputAction @Touch => m_Wrapper.m_Player_Touch;
+        public InputAction @TapPos => m_Wrapper.m_Player_TapPos;
+        public InputAction @Tap => m_Wrapper.m_Player_Tap;
+        public InputAction @TiltControlls => m_Wrapper.m_Player_TiltControlls;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -182,6 +273,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Touch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTouch;
                 @Touch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTouch;
                 @Touch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTouch;
+                @TapPos.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTapPos;
+                @TapPos.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTapPos;
+                @TapPos.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTapPos;
+                @Tap.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTap;
+                @Tap.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTap;
+                @Tap.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTap;
+                @TiltControlls.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTiltControlls;
+                @TiltControlls.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTiltControlls;
+                @TiltControlls.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTiltControlls;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -192,6 +292,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Touch.started += instance.OnTouch;
                 @Touch.performed += instance.OnTouch;
                 @Touch.canceled += instance.OnTouch;
+                @TapPos.started += instance.OnTapPos;
+                @TapPos.performed += instance.OnTapPos;
+                @TapPos.canceled += instance.OnTapPos;
+                @Tap.started += instance.OnTap;
+                @Tap.performed += instance.OnTap;
+                @Tap.canceled += instance.OnTap;
+                @TiltControlls.started += instance.OnTiltControlls;
+                @TiltControlls.performed += instance.OnTiltControlls;
+                @TiltControlls.canceled += instance.OnTiltControlls;
             }
         }
     }
@@ -200,5 +309,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnTouchPos(InputAction.CallbackContext context);
         void OnTouch(InputAction.CallbackContext context);
+        void OnTapPos(InputAction.CallbackContext context);
+        void OnTap(InputAction.CallbackContext context);
+        void OnTiltControlls(InputAction.CallbackContext context);
     }
 }

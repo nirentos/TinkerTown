@@ -61,6 +61,21 @@ public class InputManager : MonoBehaviour
             return false;
         }
     }
+    public bool GetPlayerTap()
+    {
+        if (playerControls.Player.Tap.ReadValue<float>()> 0.5)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public Vector2 GetPlayerTapPos()
+    {
+        return playerControls.Player.TapPos.ReadValue<Vector2>();
+    }
 
     public Vector2 GetPlayerTouchPosition()
     {
@@ -75,5 +90,10 @@ public class InputManager : MonoBehaviour
         }
         Debug.Log(curConScheme);
         return curConScheme;
+    }
+
+    public Vector3 GetPhoneGyro()
+    {
+        return UnityEngine.InputSystem.Gyroscope.current.angularVelocity.ReadValue();
     }
 }
