@@ -11,7 +11,7 @@ public class H_GameController : MonoBehaviour
 
     [HideInInspector] public int[] buildingLevels;
 
-    public Camera camera;
+    public GameObject camera;
     public float maxBackgroundPan;
     public float panAmount;
 
@@ -23,7 +23,6 @@ public class H_GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        camera = Camera.main;
         _buildingScr = new H_Building[buildingComp.Length];
 
         for (int i = 0; i < buildingComp.Length; i++)
@@ -76,7 +75,7 @@ public class H_GameController : MonoBehaviour
         }
     }
 
-    /*public void SwipeScreen(float direction)
+    public void SwipeScreen(float direction)
     {
         if (direction > 0 && camera.transform.position.x < maxBackgroundPan)
         {
@@ -98,7 +97,7 @@ public class H_GameController : MonoBehaviour
                 }
             }
         }
-    }*/
+    }
     public void ExitGame()
     {
         #if UNITY_EDITOR

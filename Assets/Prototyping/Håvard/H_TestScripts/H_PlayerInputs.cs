@@ -39,17 +39,17 @@ public class H_PlayerInputs : MonoBehaviour
                 Debug.Log("Downwards Swipe");
             }
 
-            //if (inputManager.GetPlayerTouchPosition().x >= startPos.x + minimumSwipeDistance)
-            //{
-            //    fingerDown = false;
-            //    gameController.SwipeScreen(1);
-            //}
+            if (inputManager.GetPlayerTouchPosition().x >= startPos.x + minimumSwipeDistance)
+            {
+                fingerDown = false;
+                gameController.SwipeScreen(1);
+            }
 
-            //if (inputManager.GetPlayerTouchPosition().x <= startPos.x - minimumSwipeDistance)
-            //{
-            //    fingerDown = false;
-            //    gameController.SwipeScreen(-1);
-            //}
+            if (inputManager.GetPlayerTouchPosition().x <= startPos.x - minimumSwipeDistance)
+            {
+                fingerDown = false;
+                gameController.SwipeScreen(-1);
+            }
         }
     }
 }
