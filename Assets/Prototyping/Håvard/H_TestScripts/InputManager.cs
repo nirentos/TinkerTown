@@ -94,6 +94,10 @@ public class InputManager : MonoBehaviour
 
     public Vector3 GetPhoneGyro()
     {
+        if (UnityEngine.InputSystem.Gyroscope.current == null)
+        {
+            return Vector3.zero;
+        }
         return UnityEngine.InputSystem.Gyroscope.current.angularVelocity.ReadValue();
     }
 }

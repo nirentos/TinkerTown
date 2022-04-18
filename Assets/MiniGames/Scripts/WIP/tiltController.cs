@@ -29,9 +29,6 @@ public class tiltController : MonoBehaviour
     private void Update()
     {
         phoneGyro = inputManager.GetPhoneGyro();
-        player.transform.position = new Vector3(inputManager.GetPlayerTouchPosition().x, transform.position.y);
-
-
     }
 
 }

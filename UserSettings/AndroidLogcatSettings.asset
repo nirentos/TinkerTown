@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "RF8M41K86CZ",
         "name": "com.DefaultCompany.com.unity.template.mobile2D",
-        "processId": 1314,
+        "processId": 10071,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -24,6 +24,30 @@
             "deviceId": "RF8M41K86CZ",
             "name": "com.DefaultCompany.com.unity.template.mobile2D",
             "processId": 1314,
+            "exited": false
+        },
+        {
+            "deviceId": "RF8M41K86CZ",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 8121,
+            "exited": false
+        },
+        {
+            "deviceId": "RF8M41K86CZ",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 10193,
+            "exited": false
+        },
+        {
+            "deviceId": "RF8M41K86CZ",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 13652,
+            "exited": false
+        },
+        {
+            "deviceId": "RF8M41K86CZ",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 10071,
             "exited": false
         }
     ],

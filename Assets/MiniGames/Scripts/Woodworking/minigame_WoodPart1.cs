@@ -43,7 +43,6 @@ public class minigame_WoodPart1 : MonoBehaviour
             //end minigame
         }
     }
-
     private void OnTriggerStay2D(Collider2D collision)
     {
         Score++;

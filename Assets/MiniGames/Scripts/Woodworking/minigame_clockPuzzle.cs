@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class minigame_clockPuzzle : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int piecesInPlace;
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (piecesInPlace == 7)
+        {
+            //end
+        }
+    }
+    public void IncreaseCount()
+    {
+        piecesInPlace++;
     }
 }
