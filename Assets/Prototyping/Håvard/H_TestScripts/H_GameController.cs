@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class H_GameController : MonoBehaviour
 {
@@ -42,6 +43,16 @@ public class H_GameController : MonoBehaviour
             Debug.Log("buildingscr " + i.ToString() + " contains " + _buildingScr[i].gameObject.name);
         }
 
+        Restore();
+        for (int i = 0; i < _buildingScr.Length; i++)
+        {
+            _buildingScr[i].Restore();
+        }
+        resourceTracking.Restore();
+    }
+
+    private void Awake()
+    {
         Restore();
         for (int i = 0; i < _buildingScr.Length; i++)
         {
@@ -129,5 +140,16 @@ public class H_GameController : MonoBehaviour
 
 
         resourceTracking.OfflineCollection(passedTimeInSeconds, _buildingScr);
+    }
+
+    public void ChangeScene(string sceneToLoad)
+    {
+        Save();
+        for (int i = 0; i < _buildingScr.Length; i++)
+        {
+            _buildingScr[i].Save();
+        }
+        resourceTracking.Save();
+        SceneManager.LoadScene(sceneToLoad);
     }
 }
