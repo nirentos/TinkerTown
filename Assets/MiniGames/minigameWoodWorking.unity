@@ -1797,16 +1797,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 543283154}
+        m_TargetAssemblyTypeName: scoreTracker, Assembly-CSharp
+        m_MethodName: SceneChange
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: MainScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &376624619
@@ -2390,6 +2390,7 @@ MonoBehaviour:
   total: 0
   woodforking: 1
   UI: {fileID: 958816209}
+  resourceGain: {fileID: 2725151404505316657, guid: dbc7d6ced62cd9f44bb21c71a278172b, type: 3}
   star1: {fileID: 651365}
   star2: {fileID: 2106339197}
   star3: {fileID: 583308830}
