@@ -584,6 +584,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1882a66ebd33b149aead892175b28f2, type: 3}
+--- !u!1001 &2808246371547582064
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2808246372119470819, guid: e6e900ca40e7adc4da8c608c9444bbea, type: 3}
+      propertyPath: m_Name
+      value: Town Hall Stage 3 Anim_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808246372119470821, guid: e6e900ca40e7adc4da8c608c9444bbea, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808246372119470821, guid: e6e900ca40e7adc4da8c608c9444bbea, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808246372119470821, guid: e6e900ca40e7adc4da8c608c9444bbea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808246372119470821, guid: e6e900ca40e7adc4da8c608c9444bbea, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808246372119470821, guid: e6e900ca40e7adc4da8c608c9444bbea, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808246372119470821, guid: e6e900ca40e7adc4da8c608c9444bbea, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808246372119470821, guid: e6e900ca40e7adc4da8c608c9444bbea, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808246372119470821, guid: e6e900ca40e7adc4da8c608c9444bbea, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808246372119470821, guid: e6e900ca40e7adc4da8c608c9444bbea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808246372119470821, guid: e6e900ca40e7adc4da8c608c9444bbea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808246372119470821, guid: e6e900ca40e7adc4da8c608c9444bbea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e6e900ca40e7adc4da8c608c9444bbea, type: 3}
 --- !u!1001 &8764217417058598831
 PrefabInstance:
   m_ObjectHideFlags: 0
