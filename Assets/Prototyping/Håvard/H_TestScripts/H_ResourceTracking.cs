@@ -112,15 +112,22 @@ public class H_ResourceTracking : MonoBehaviour
 
     public void OfflineCollection(int timePassed, H_Building[] h_BuildingsAr)
     {
-        var resourcesToCollect = timePassed / idleWorkersTimeBetweenCollects;
+        //var buildings = new H_Building[h_BuildingsAr.Length];
 
-        for (int i = 0; i < resourcesToCollect; i++)
-        {
-            int j = Random.Range(1, 2);
-            if (Mathf.FloorToInt(h_BuildingsAr[j]._restorableResources) > 0)
-            {
-                h_BuildingsAr[j].CollectFromOfflineTime(1);
-            }
-        }
+        //for (int i = 0; i < buildings.Length; i++)
+        //{
+        //    buildings[i] = h_BuildingsAr[i];
+        //}
+
+        //var resourcesToCollect = timePassed / idleWorkersTimeBetweenCollects;
+
+        //for (int i = 0; i < resourcesToCollect; i++)
+        //{
+        //    int j = Random.Range(0, buildings.Length);
+        //    if (buildings[j]._restorableResources > 0)
+        //    {
+        //        buildings[j].CollectFromOfflineTime(1);
+        //    }
+        //}
     }
 }

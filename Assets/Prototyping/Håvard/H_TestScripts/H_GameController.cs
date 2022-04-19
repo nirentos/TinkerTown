@@ -139,7 +139,7 @@ public class H_GameController : MonoBehaviour
         }
 
 
-        resourceTracking.OfflineCollection(passedTimeInSeconds, _buildingScr);
+        //resourceTracking.OfflineCollection(passedTimeInSeconds, _buildingScr);
     }
 
     public void ChangeScene(string sceneToLoad)
