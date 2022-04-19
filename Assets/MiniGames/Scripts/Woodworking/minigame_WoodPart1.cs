@@ -14,6 +14,7 @@ public class minigame_WoodPart1 : MonoBehaviour
     Vector2 dragOrigin;
     Vector2 anchorPos;
 
+    public GameObject self, nextPart;
 
     private InputManager inputManager;
     private void Start()
@@ -40,8 +41,11 @@ public class minigame_WoodPart1 : MonoBehaviour
 
         if (Vector2.Distance(log.transform.position,logEndPos) <= 1)
         {
-            //end minigame
+            self.SetActive(false);
+            nextPart.SetActive(true);
         }
+
+        transform.Rotate(50, 0, 0 * Time.deltaTime);
     }
     private void OnTriggerStay2D(Collider2D collision)
     {

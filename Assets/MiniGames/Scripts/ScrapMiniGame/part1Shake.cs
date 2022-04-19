@@ -6,12 +6,14 @@ using UnityEngine.InputSystem;
 public class part1Shake : MonoBehaviour
 {
     public int timer, shakes;
-    public GameObject soundPooler, nextPart;
+    public GameObject soundPooler, nextPart, clock;
+    Rigidbody2D rb;
 
     private InputManager inputManager;
     private void Start()
     {
         inputManager = InputManager.Instance;
+        rb = clock.GetComponent<Rigidbody2D>();
     }
     // Update is called once per frame
     private void OnEnable()
@@ -29,13 +31,15 @@ public class part1Shake : MonoBehaviour
         {
             shakes++;
             soundPooler.GetComponent<soundPooler>().playSound();
+            clock.GetComponent<AudioSource>().volume = clock.GetComponent<AudioSource>().volume - 0.02f;
         }
-        if (shakes >= 100)
+        if (shakes >= 50)
         {
             Destroy(gameObject);
             nextPart.SetActive(true);
             gameObject.SetActive(false);
         }
+        rb.velocity = inputManager.GetPhoneGyro();
     }
     private void FixedUpdate()
     {

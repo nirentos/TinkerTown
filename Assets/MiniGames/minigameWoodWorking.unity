@@ -1129,7 +1129,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &333781907
 Transform:
   m_ObjectHideFlags: 0
@@ -3692,6 +3692,8 @@ MonoBehaviour:
   speed: 3
   Score: 0
   dragSpeed: 0.02
+  self: {fileID: 0}
+  nextPart: {fileID: 0}
 --- !u!1 &1600669785
 GameObject:
   m_ObjectHideFlags: 0

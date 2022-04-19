@@ -8,6 +8,10 @@ public class rotate : MonoBehaviour
     public bool isRotating;
     public GameObject lastCog;
     public float speed;
+    private void Start()
+    {
+        //GetComponent<AudioSource>().pitch = Random.Range(0.7f, 1.4f);
+    }
     private void Update()
     {
         if (lastCog.GetComponent<rotate>().isRotating)
@@ -24,6 +28,7 @@ public class rotate : MonoBehaviour
                     break;
             }
             isRotating = true;
+            GetComponent<AudioSource>().enabled = true;
         }
     }
 }
