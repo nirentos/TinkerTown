@@ -33,7 +33,7 @@ public class H_Building : MonoBehaviour
 
     public Sprite defaultSprite;
 
-    public Image[]buildingDisp;
+    public Image[] buildingDisp;
 
     public Sprite[] buildingType0;
     public Sprite[] buildingType1;
@@ -48,7 +48,6 @@ public class H_Building : MonoBehaviour
     public int[] reqBuilding3LevelToUpgradeAtLevel;
     public int[] reqRes1ToUpgradeAtLevel;
     public int[] reqRes2ToUpgradeAtLevel;
-
 
     #endregion
 
@@ -69,6 +68,14 @@ public class H_Building : MonoBehaviour
     public Button Collect;
     public Button Upgrade;
     public Button Exit;
+
+    [Header("Upgrade Requirements UI")]
+    public Image[] buildingN1_UpgradeReqUI;
+    public Image[] buildingN2_UpgradeReqUI;
+    public TMP_Text resource1_UpgradeReqUI;
+    public TMP_Text resource2_UpgradeReqUI;
+    public TMP_Text playerEnergy_UpgradeReqUI;
+
     #endregion
 
     public void OnApplicationQuit()
@@ -201,6 +208,156 @@ public class H_Building : MonoBehaviour
                 resourceCount.text = Mathf.FloorToInt(curResourceAmount).ToString() + " / " + resourceMaxAtLevel[buildingLevel].ToString();
                 workerCount.text = curWorkers.ToString() + " / " + workerMaxAtLevel[buildingLevel].ToString();
             }
+
+            #region Upgrade Requirements UI
+
+            if (buildingAndResourceType == 0)
+            {
+                if (!buildingN1_UpgradeReqUI[reqBuilding2LevelToUpgradeAtLevel[buildingLevel]].enabled || buildingN1_UpgradeReqUI[reqBuilding2LevelToUpgradeAtLevel[buildingLevel] + 1].enabled)
+                {
+                    for (int i = 1; i < buildingN1_UpgradeReqUI.Length; i++)
+                    {
+                        if (i <= reqBuilding2LevelToUpgradeAtLevel[buildingLevel])
+                        {
+                            buildingN1_UpgradeReqUI[i].enabled = true;
+                        }
+                        else if (i > reqBuilding2LevelToUpgradeAtLevel[buildingLevel])
+                        {
+                            buildingN1_UpgradeReqUI[i].enabled = false;
+                        }
+                    }
+                }
+
+                if (!buildingN2_UpgradeReqUI[reqBuilding3LevelToUpgradeAtLevel[buildingLevel]].enabled || buildingN2_UpgradeReqUI[reqBuilding3LevelToUpgradeAtLevel[buildingLevel] + 1].enabled)
+                {
+                    for (int i = 1; i < buildingN2_UpgradeReqUI.Length; i++)
+                    {
+                        if (i <= reqBuilding3LevelToUpgradeAtLevel[buildingLevel])
+                        {
+                            buildingN2_UpgradeReqUI[i].enabled = true;
+                        }
+                        else if (i > reqBuilding3LevelToUpgradeAtLevel[buildingLevel])
+                        {
+                            buildingN2_UpgradeReqUI[i].enabled = false;
+                        }
+                    }
+                }
+
+                for (int i = 0; i < buildingN1_UpgradeReqUI.Length; i++)
+                {
+                    if (buildingSpriteCollection[1].Length < i)
+                    {
+                        buildingN1_UpgradeReqUI[i].sprite = buildingSpriteCollection[1][i];
+                    }
+                }
+                for (int i = 0; i < buildingN1_UpgradeReqUI.Length; i++)
+                {
+                    if (buildingSpriteCollection[2].Length < i)
+                    {
+                        buildingN2_UpgradeReqUI[i].sprite = buildingSpriteCollection[2][i];
+                    }
+                }
+            }
+            else if (buildingAndResourceType == 1)
+            {
+                if (!buildingN1_UpgradeReqUI[reqBuilding1LevelToUpgradeAtLevel[buildingLevel]].enabled || buildingN1_UpgradeReqUI[reqBuilding1LevelToUpgradeAtLevel[buildingLevel] + 1].enabled)
+                {
+                    for (int i = 1; i < buildingN1_UpgradeReqUI.Length; i++)
+                    {
+                        if (i <= reqBuilding1LevelToUpgradeAtLevel[buildingLevel])
+                        {
+                            buildingN1_UpgradeReqUI[i].enabled = true;
+                        }
+                        else if (i > reqBuilding1LevelToUpgradeAtLevel[buildingLevel])
+                        {
+                            buildingN1_UpgradeReqUI[i].enabled = false;
+                        }
+                    }
+                }
+
+                if (!buildingN2_UpgradeReqUI[reqBuilding3LevelToUpgradeAtLevel[buildingLevel]].enabled || buildingN2_UpgradeReqUI[reqBuilding3LevelToUpgradeAtLevel[buildingLevel] + 1].enabled)
+                {
+                    for (int i = 1; i < buildingN2_UpgradeReqUI.Length; i++)
+                    {
+                        if (i <= reqBuilding3LevelToUpgradeAtLevel[buildingLevel])
+                        {
+                            buildingN2_UpgradeReqUI[i].enabled = true;
+                        }
+                        else if (i > reqBuilding3LevelToUpgradeAtLevel[buildingLevel])
+                        {
+                            buildingN2_UpgradeReqUI[i].enabled = false;
+                        }
+                    }
+                }
+
+                for (int i = 0; i < buildingN1_UpgradeReqUI.Length; i++)
+                {
+                    if (buildingSpriteCollection[0].Length < i)
+                    {
+                        buildingN1_UpgradeReqUI[i].sprite = buildingSpriteCollection[0][i];
+                    }
+                }
+                for (int i = 0; i < buildingN1_UpgradeReqUI.Length; i++)
+                {
+                    if (buildingSpriteCollection[2].Length < i)
+                    {
+                        buildingN2_UpgradeReqUI[i].sprite = buildingSpriteCollection[2][i];
+                    }
+                }
+            }
+            else if (buildingAndResourceType == 2)
+            {
+                if (!buildingN1_UpgradeReqUI[reqBuilding1LevelToUpgradeAtLevel[buildingLevel]].enabled || buildingN1_UpgradeReqUI[reqBuilding1LevelToUpgradeAtLevel[buildingLevel] + 1].enabled)
+                {
+                    for (int i = 1; i < buildingN1_UpgradeReqUI.Length; i++)
+                    {
+                        if (i <= reqBuilding1LevelToUpgradeAtLevel[buildingLevel])
+                        {
+                            buildingN1_UpgradeReqUI[i].enabled = true;
+                        }
+                        else if (i > reqBuilding1LevelToUpgradeAtLevel[buildingLevel])
+                        {
+                            buildingN1_UpgradeReqUI[i].enabled = false;
+                        }
+                    }
+                }
+
+                if (!buildingN2_UpgradeReqUI[reqBuilding2LevelToUpgradeAtLevel[buildingLevel]].enabled || buildingN2_UpgradeReqUI[reqBuilding2LevelToUpgradeAtLevel[buildingLevel] + 1].enabled)
+                {
+                    for (int i = 1; i < buildingN2_UpgradeReqUI.Length; i++)
+                    {
+                        if (i <= reqBuilding2LevelToUpgradeAtLevel[buildingLevel])
+                        {
+                            buildingN2_UpgradeReqUI[i].enabled = true;
+                        }
+                        else if (i > reqBuilding2LevelToUpgradeAtLevel[buildingLevel])
+                        {
+                            buildingN2_UpgradeReqUI[i].enabled = false;
+                        }
+                    }
+                }
+
+                for (int i = 0; i < buildingN1_UpgradeReqUI.Length; i++)
+                {
+                    if (buildingSpriteCollection[0].Length < i)
+                    {
+                        buildingN1_UpgradeReqUI[i].sprite = buildingSpriteCollection[0][i];
+                    }
+                }
+                for (int i = 0; i < buildingN1_UpgradeReqUI.Length; i++)
+                {
+                    if (buildingSpriteCollection[1].Length < i)
+                    {
+                        buildingN2_UpgradeReqUI[i].sprite = buildingSpriteCollection[1][i];
+                    }
+                }
+            }
+
+            resource1_UpgradeReqUI.text = reqRes1ToUpgradeAtLevel[buildingLevel].ToString();
+            resource2_UpgradeReqUI.text = reqRes2ToUpgradeAtLevel[buildingLevel].ToString();
+            playerEnergy_UpgradeReqUI.text = (5 * (buildingLevel + 1)).ToString();
+
+            #endregion
         }
 
     }
