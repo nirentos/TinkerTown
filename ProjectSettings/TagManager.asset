@@ -49,3 +49,6 @@ TagManager:
   - name: Buildings
     uniqueID: 2208711623
     locked: 0
+  - name: UI
+    uniqueID: 2270401967
+    locked: 0
