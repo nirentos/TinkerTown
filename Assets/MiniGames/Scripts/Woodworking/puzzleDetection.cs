@@ -15,6 +15,7 @@ public class puzzleDetection : MonoBehaviour
             parent.GetComponent<minigame_clockPuzzle>().IncreaseCount();
             Destroy(puzzlePiece);
             GetComponent<puzzleDetection>().enabled = false;
+            GetComponent<AudioSource>().Play();
         }
     }
 }

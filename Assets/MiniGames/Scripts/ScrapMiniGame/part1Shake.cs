@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class part1Shake : MonoBehaviour
 {
     public int timer, shakes;
-    public GameObject soundPooler, nextPart, clock;
+    public GameObject soundPooler, nextPart, clock, scoreTracker;
     Rigidbody2D rb;
 
     private InputManager inputManager;
@@ -35,7 +35,19 @@ public class part1Shake : MonoBehaviour
         }
         if (shakes >= 50)
         {
-            Destroy(gameObject);
+            var starScore = scoreTracker.GetComponent<scoreTracker>();
+            switch (timer / 50)
+            {
+                case <= 10:
+                    starScore.part1 = 3;
+                    break;
+                case <= 15:
+                    starScore.part1 = 2;
+                    break;
+                default:
+                    starScore.part1 = 1;
+                    break;
+            }
             nextPart.SetActive(true);
             gameObject.SetActive(false);
         }

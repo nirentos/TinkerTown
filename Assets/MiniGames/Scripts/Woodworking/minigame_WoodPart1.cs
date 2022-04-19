@@ -8,44 +8,66 @@ public class minigame_WoodPart1 : MonoBehaviour
     public GameObject log;
     public Vector2 logEndPos;
     public float speed, Score;
+    public AudioSource sawGoing, sawSawing;
 
     [Header("player controll")]
     public float dragSpeed;
-    Vector2 dragOrigin;
-    Vector2 anchorPos;
 
-    public GameObject self, nextPart;
+    public GameObject self, nextPart, scoreTracker;
+    Vector2 sawBegin = new Vector2(0, 0.10f);
+    Vector2 sawEnd = new Vector2(0, -7.2f);
 
     private InputManager inputManager;
     private void Start()
     {
         inputManager = InputManager.Instance;
+        
+
     }
     private void Update()
     {
-        if (inputManager.GetPlayerTap())
-        {
-            dragOrigin = inputManager.GetPlayerTapPos();
-            anchorPos = transform.position;
 
-        }//get tap/mouse position and an anchor position
         if (inputManager.GetPlayerTouch())
         {
             Vector2 dragPos = inputManager.GetPlayerTouchPosition();
 
-            transform.position = new Vector2(anchorPos.x - ((dragOrigin.x - dragPos.x) * dragSpeed), transform.position.y);
+            transform.position = new Vector3(Camera.main.ScreenToWorldPoint(inputManager.GetPlayerTouchPosition()).x, transform.position.y, 0);
         }
 
 
         log.transform.position = Vector2.MoveTowards(log.transform.position, logEndPos, speed * Time.deltaTime);
-
-        if (Vector2.Distance(log.transform.position,logEndPos) <= 1)
+        if (Vector2.Distance(log.transform.position, sawBegin) <= 0.5f)
         {
+            sawGoing.enabled = false;
+            sawSawing.enabled = true;
+        }
+
+        if (Vector2.Distance(log.transform.position, sawEnd) <= 1)
+        {
+            sawGoing.enabled = true;
+            sawSawing.enabled = false;
+        }
+        if (Vector2.Distance(log.transform.position, logEndPos) <= 0.5f)
+        {
+            var starScore = scoreTracker.GetComponent<scoreTracker>();
+            switch (Score)
+            {
+                case >= 15:
+                    starScore.part1 = 3;
+                        break;
+                case >= 7:
+                    starScore.part1 = 2;
+                        break;
+                default:
+                    starScore.part1 = 1;
+                    break;
+            }
             self.SetActive(false);
             nextPart.SetActive(true);
         }
 
-        transform.Rotate(50, 0, 0 * Time.deltaTime);
+
+
     }
     private void OnTriggerStay2D(Collider2D collision)
     {

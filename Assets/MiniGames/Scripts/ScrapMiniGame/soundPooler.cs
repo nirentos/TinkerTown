@@ -12,8 +12,10 @@ public class soundPooler : MonoBehaviour
         public int size;
     }
     string soundSpawn = "";
+    public int poolSize;
     public List<Pool> soundPools;
     public Dictionary<string, Queue<GameObject>> poolDictonary;
+
     private void Start()
     {
         poolDictonary = new Dictionary<string, Queue<GameObject>>();
@@ -33,7 +35,7 @@ public class soundPooler : MonoBehaviour
     }
     public void playSound()
     {
-        int randNumb = Random.Range(1,4);
+        int randNumb = Random.Range(1,poolSize+1);
         switch (randNumb)
         {
             case 1:

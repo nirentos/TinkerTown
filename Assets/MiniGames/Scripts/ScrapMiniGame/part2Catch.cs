@@ -5,7 +5,7 @@ using UnityEngine;
 public class part2Catch : MonoBehaviour
 {
     public List<GameObject> scrap;
-    public GameObject nextPart, thispart;
+    public GameObject nextPart, thispart,scoreTracker;
 
     //Vector2 dragOrigin;
     //Vector2 anchorPos;
@@ -13,12 +13,10 @@ public class part2Catch : MonoBehaviour
     public int timer, score, dropTimer;
     int spawnTimer;
     public float dragSpeed;
-    Camera mainCam;
     private InputManager inputManager;
     private void Start()
     {
         inputManager = InputManager.Instance;
-        mainCam = Camera.main;
 
     }
     private void Update()
@@ -31,10 +29,23 @@ public class part2Catch : MonoBehaviour
         //}//get tap/mouse position and an anchor position
         if (inputManager.GetPlayerTouch())
         {
-            transform.position = new Vector3(Camera.main.ScreenToViewportPoint(inputManager.GetPlayerTouchPosition()).x, transform.position.y, 0);
+            transform.position = new Vector3(Camera.main.ScreenToWorldPoint(inputManager.GetPlayerTouchPosition()).x, transform.position.y, 0);
         }
-        if (timer >= 500)
+        if (timer/50 >= 15)
         {
+            var starScore = scoreTracker.GetComponent<scoreTracker>();
+            switch (score)
+            {
+                case >= 12:
+                    starScore.part2 = 3;
+                    break;
+                case >=8:
+                    starScore.part2 = 2;
+                    break;
+                default:
+                    starScore.part2 = 1;
+                    break;
+            }
             nextPart.SetActive(true);
             thispart.SetActive(false);
         }
