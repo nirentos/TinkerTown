@@ -30,6 +30,7 @@ public class H_ResourceTracking : MonoBehaviour
     {
         avaliableWorkers = maxWorkersAtTownLevel[townLevel];
     }
+
     private void Update()
     {
         switch (townLevel)
@@ -113,6 +114,8 @@ public class H_ResourceTracking : MonoBehaviour
         {
             PlayerPrefs.SetInt("Tracking of Resource " + i.ToString(), curResources[i]);
         }
+
+        Debug.Log("Resource Tracking has been saved");
     }
 
     public void Restore()
@@ -125,6 +128,8 @@ public class H_ResourceTracking : MonoBehaviour
         {
             curResources[i] = PlayerPrefs.GetInt("Tracking of Resource " + i.ToString());
         }
+
+        Debug.Log("Resource Tracking has been Restored");
     }
 
     public void OfflineCollection(int timePassed, H_Building[] h_BuildingsAr)

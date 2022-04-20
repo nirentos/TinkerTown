@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class H_Building : MonoBehaviour
 {
     private H_ResourceTracking _resourceTracking;
     private H_GameController _gameController;
     private int[] _buildingLevels;
+    public string nameOfMinigameScene;
 
     [HideInInspector]public int _restorableResources;
 
@@ -61,6 +63,7 @@ public class H_Building : MonoBehaviour
     public GameObject hireWorkersButton;
     public GameObject fireWorkersButton;
     public GameObject upgradeButton;
+    public GameObject miniGameButton;
 
     [Header("UI Buttons")]
     public Button HireWorker;
@@ -123,12 +126,12 @@ public class H_Building : MonoBehaviour
 
         if (buildingLevel > 0)
         {
-            Debug.Log("building " + gameObject.name + " is of level " + buildingLevel.ToString());
+            //Debug.Log("building " + gameObject.name + " is of level " + buildingLevel.ToString());
             for (int i = 1; i < buildingDisp.Length; i++)
             {
                 if (i <= buildingLevel)
                 {
-                    Debug.Log("Activating building disp " + i.ToString());
+                    //Debug.Log("Activating building disp " + i.ToString());
                     buildingDisp[0].gameObject.SetActive(false);
                     buildingDisp[i].gameObject.SetActive(true);
                 }
@@ -159,6 +162,7 @@ public class H_Building : MonoBehaviour
                 resourceCount.gameObject.SetActive(false);
                 prototypeHelpText.gameObject.SetActive(false);
                 Collect.gameObject.SetActive(false);
+                miniGameButton.SetActive(false);
             }
             else
             {
@@ -168,6 +172,7 @@ public class H_Building : MonoBehaviour
                 resourceCount.gameObject.SetActive(true);
                 prototypeHelpText.gameObject.SetActive(true);
                 Collect.gameObject.SetActive(true);
+                miniGameButton.SetActive(true);
             }
 
             if (curWorkers == workerMaxAtLevel[buildingLevel])
@@ -465,6 +470,18 @@ public class H_Building : MonoBehaviour
         visibleUI = true;
     }
 
+    public void MiniGameButtonPressed()
+    {
+        if (visibleUI)
+        {
+            if (buildingAndResourceType != 0)
+            {
+                H_GameController gc = GameObject.Find("GameCore").gameObject.GetComponent<H_GameController>();
+                gc.ChangeScene(nameOfMinigameScene);
+            }
+        }
+    }
+
     public void InsertResourceTracker(H_ResourceTracking resTrackScr)
     {
         _resourceTracking = resTrackScr;
@@ -505,7 +522,7 @@ public class H_Building : MonoBehaviour
                 buildingDisp[i].gameObject.SetActive(true);
             }
         }
-        Debug.Log("attempted to restore building information");
+        //Debug.Log("attempted to restore building information");
     }
 
     public void RestoreProductionTime(int passedTime)

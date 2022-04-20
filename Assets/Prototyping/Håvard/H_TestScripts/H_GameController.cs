@@ -37,11 +37,11 @@ public class H_GameController : MonoBehaviour
 
         buildingLevels = new int[_buildingScr.Length];
 
-        Debug.Log("buildingscr contains " + _buildingScr.Length.ToString());
-        for (int i = 0; i < _buildingScr.Length; i++)
-        {
-            Debug.Log("buildingscr " + i.ToString() + " contains " + _buildingScr[i].gameObject.name);
-        }
+        //Debug.Log("buildingscr contains " + _buildingScr.Length.ToString());
+        //for (int i = 0; i < _buildingScr.Length; i++)
+        //{
+        //    Debug.Log("buildingscr " + i.ToString() + " contains " + _buildingScr[i].gameObject.name);
+        //}
 
         Restore();
         for (int i = 0; i < _buildingScr.Length; i++)
@@ -59,6 +59,8 @@ public class H_GameController : MonoBehaviour
             _buildingScr[i].Restore();
         }
         resourceTracking.Restore();
+
+        MiniGameGains();
     }
 
     // Update is called once per frame
@@ -150,6 +152,39 @@ public class H_GameController : MonoBehaviour
             _buildingScr[i].Save();
         }
         resourceTracking.Save();
+
+        StartCoroutine(WaitToChangeScene(sceneToLoad));
+    }
+
+    public void MiniGameGains()
+    {
+        Debug.Log("Ran MiniGameGains");
+
+        if (GameObject.Find("resourceGains(Clone)") != null)
+        {
+            Debug.Log("Started Collecting MiniGameGains");
+
+            StartCoroutine(WaitForMiniGameGains());
+        }
+    }
+
+    IEnumerator WaitToChangeScene(string sceneToLoad)
+    {
+        yield return new WaitForSecondsRealtime(10);
+
         SceneManager.LoadScene(sceneToLoad);
+    }
+
+    IEnumerator WaitForMiniGameGains()
+    {
+        yield return new WaitForSecondsRealtime(5);
+
+        GameObject miniGameGains = GameObject.Find("resourceGains(Clone)").gameObject;
+        int resType = miniGameGains.GetComponent<resourceGain>().resourceType;
+        int amount = miniGameGains.GetComponent<resourceGain>().amount;
+
+        resourceTracking.CollectResources(resType, amount);
+        Destroy(miniGameGains);
+        Debug.Log("Recieved MiniGame Gains");
     }
 }
