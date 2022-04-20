@@ -33,9 +33,7 @@ public class minigame_WoodPart1 : MonoBehaviour
 
             transform.position = new Vector3(Camera.main.ScreenToWorldPoint(inputManager.GetPlayerTouchPosition()).x, transform.position.y, 0);
         }
-
-
-        log.transform.position = Vector2.MoveTowards(log.transform.position, logEndPos, speed * Time.deltaTime);
+        
         if (Vector2.Distance(log.transform.position, sawBegin) <= 0.5f)
         {
             sawGoing.enabled = false;
@@ -68,6 +66,10 @@ public class minigame_WoodPart1 : MonoBehaviour
 
 
 
+    }
+    private void FixedUpdate()
+    {
+        log.transform.position = Vector2.MoveTowards(log.transform.position, logEndPos, speed * Time.deltaTime);
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
