@@ -170,7 +170,7 @@ public class H_GameController : MonoBehaviour
 
     IEnumerator WaitToChangeScene(string sceneToLoad)
     {
-        yield return new WaitForSecondsRealtime(10);
+        yield return new WaitForSecondsRealtime(2);
 
         SceneManager.LoadScene(sceneToLoad);
     }
