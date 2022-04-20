@@ -8,6 +8,8 @@ public class H_ResourceTracking : MonoBehaviour
     public int hardCurrency;
     public int townLevel;
 
+    public GameObject forestLayer, layer2, layer3;
+
     public int playerEnergyCurrent;
     public int playerEnergyMaximum;
 
@@ -27,6 +29,21 @@ public class H_ResourceTracking : MonoBehaviour
     private void Start()
     {
         avaliableWorkers = maxWorkersAtTownLevel[townLevel];
+    }
+    private void Update()
+    {
+        switch (townLevel)
+        {
+            case >= 2:
+                forestLayer.SetActive(false);
+                layer3.SetActive(true);
+                break;
+            case >= 1:
+                layer2.SetActive(true);
+                break;
+            default:
+                break;
+        }
     }
 
     public void RestorePlayerEnergy(int energyToRestore)
