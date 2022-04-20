@@ -435,7 +435,11 @@ public class H_Building : MonoBehaviour
             buildingLevel++;
             buildingDisp[buildingLevel].gameObject.SetActive(true);
 
-            if (buildingAndResourceType == 0 && buildingLevel == 2)
+            if (buildingAndResourceType == 0 && buildingLevel == 1)
+            {
+                _resourceTracking.UpgradeTownLevel();
+            }
+            else if (buildingAndResourceType == 0 && buildingLevel == 3)
             {
                 _resourceTracking.UpgradeTownLevel();
             }
