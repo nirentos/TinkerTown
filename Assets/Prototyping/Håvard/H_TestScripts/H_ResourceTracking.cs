@@ -9,6 +9,7 @@ public class H_ResourceTracking : MonoBehaviour
     public int townLevel;
 
     public GameObject forestLayer, layer2, layer3;
+    public GameObject demoEnd;
 
     public int playerEnergyCurrent;
     public int playerEnergyMaximum;
@@ -35,6 +36,9 @@ public class H_ResourceTracking : MonoBehaviour
     {
         switch (townLevel)
         {
+            case >= 4:
+                demoEnd.SetActive(true);
+                break;
             case >= 2:
                 forestLayer.SetActive(false);
                 layer3.SetActive(true);
