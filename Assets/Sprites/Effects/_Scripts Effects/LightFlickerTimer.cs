@@ -18,7 +18,7 @@ public class LightFlickerTimer : MonoBehaviour
         if(timer < 0)
         {
             anim.SetTrigger("flicker");
-            timer = Random.Range(5f, 12f);
+            timer = Random.Range(anim.GetCurrentAnimatorStateInfo(0).length + 5f, 12f);
         }
     }
 }
