@@ -25,9 +25,11 @@ public class part1Shake : MonoBehaviour
         InputSystem.DisableDevice(UnityEngine.InputSystem.Gyroscope.current);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (Vector3.Magnitude(inputManager.GetPhoneGyro()) >=5f || inputManager.GetPlayerTap())
+        timer++;
+
+        if (Vector3.Magnitude(inputManager.GetPhoneGyro()) >= 5f || inputManager.GetPlayerTap())
         {
             shakes++;
             soundPooler.GetComponent<soundPooler>().playSound();
@@ -52,9 +54,5 @@ public class part1Shake : MonoBehaviour
             gameObject.SetActive(false);
         }
         rb.velocity = inputManager.GetPhoneGyro();
-    }
-    private void FixedUpdate()
-    {
-        timer++;
     }
 }

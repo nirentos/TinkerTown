@@ -12,7 +12,7 @@ public class moveCogs : MonoBehaviour
         startPos = transform.position;
 
     }
-    private void Update()
+    private void FixUpdate()
     {
         if (inputManager.GetPlayerTouch())
         {
