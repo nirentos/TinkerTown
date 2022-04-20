@@ -7737,7 +7737,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &662179309
 Transform:
   m_ObjectHideFlags: 0
@@ -7789,6 +7789,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 662179310}
   timer: 0
+  minTime: 9
+  maxTime: 20
 --- !u!1 &670284555
 GameObject:
   m_ObjectHideFlags: 0
@@ -22070,7 +22072,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1829300771
 Transform:
   m_ObjectHideFlags: 0
@@ -22121,6 +22123,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 1829300772}
   timer: 0
+  minTime: 11
+  maxTime: 25
 --- !u!1 &1830612476
 GameObject:
   m_ObjectHideFlags: 0
