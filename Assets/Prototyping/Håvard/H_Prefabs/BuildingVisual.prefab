@@ -284,6 +284,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00db3f306855f3e44b21bf0434ebe3be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameOfMinigameScene: 
+  scrapYardFX: {fileID: 0}
+  woodWorkingFX: {fileID: 0}
+  mayorFX1: {fileID: 0}
+  mayorFX2: {fileID: 0}
+  _restorableResources: 0
   resourceGenVar: 0
   buildingAndResourceType: 0
   buildingLevel: 0
@@ -303,8 +309,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 21300000, guid: c43d32cbc820812408ba7e6fb1fb0844, type: 3}
   - {fileID: 21300000, guid: 9f6d458b0c0f4e44a8455a310a747400, type: 3}
-  - {fileID: 21300000, guid: 5d278cfadd3bd444ba7c02eb0a0d2dec, type: 3}
-  - {fileID: 21300000, guid: aa226bea4f52a5846937cefca57d7a57, type: 3}
+  - {fileID: 21300000, guid: fc9b31e218f49984aa603aaa511f7079, type: 3}
+  - {fileID: 21300000, guid: 4f03b05035e689543826c801d239aade, type: 3}
   buildingType1:
   - {fileID: 21300000, guid: faebb2e368fd75843bda70d07881bfb1, type: 3}
   - {fileID: 21300000, guid: 3a3a4e049f9300a45aec59d7f741a563, type: 3}
@@ -317,24 +323,31 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2a1bf4a69c8b261468f2b83260ad91ef, type: 3}
   - {fileID: 21300000, guid: 45633fb37d012fe42862b836f2783a02, type: 3}
   - {fileID: 21300000, guid: bfa1f1266eecccc4fa0745db01bd81ff, type: 3}
-  - {fileID: 21300000, guid: 5bb9abcc7c28c7949bcbab5ce3eca21c, type: 3}
+  - {fileID: 21300000, guid: d9c69d0a264f721498194f565d7e1424, type: 3}
   reqTownLevelToUpgradeAtLevel: 0000000000000000000000000000000000000000
   reqBuilding1LevelToUpgradeAtLevel: 0000000000000000000000000000000000000000
   reqBuilding2LevelToUpgradeAtLevel: 0000000000000000000000000000000000000000
   reqBuilding3LevelToUpgradeAtLevel: 0000000000000000000000000000000000000000
   reqRes1ToUpgradeAtLevel: 0000000000000000000000000000000000000000
   reqRes2ToUpgradeAtLevel: 0000000000000000000000000000000000000000
+  visibleUI: 0
   resourceCount: {fileID: 0}
   workerCount: {fileID: 0}
   prototypeHelpText: {fileID: 0}
   hireWorkersButton: {fileID: 0}
   fireWorkersButton: {fileID: 0}
   upgradeButton: {fileID: 0}
+  miniGameButton: {fileID: 0}
   HireWorker: {fileID: 0}
   FireWorker: {fileID: 0}
   Collect: {fileID: 0}
   Upgrade: {fileID: 0}
   Exit: {fileID: 0}
+  buildingN1_UpgradeReqUI: []
+  buildingN2_UpgradeReqUI: []
+  resource1_UpgradeReqUI: {fileID: 0}
+  resource2_UpgradeReqUI: {fileID: 0}
+  playerEnergy_UpgradeReqUI: {fileID: 0}
 --- !u!1 &5261063654431882987
 GameObject:
   m_ObjectHideFlags: 0

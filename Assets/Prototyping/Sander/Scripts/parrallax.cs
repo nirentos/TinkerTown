@@ -8,8 +8,6 @@ public class parrallax : MonoBehaviour
     public GameObject cam;
     public float parrallaxEffect;
 
-    public float dragSpeed;
-
     void Start()
     {
         startpos = transform.position.x;

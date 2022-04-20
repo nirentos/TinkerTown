@@ -11,6 +11,11 @@ public class H_Building : MonoBehaviour
     private H_GameController _gameController;
     private int[] _buildingLevels;
     public string nameOfMinigameScene;
+    [Header("Animation objects")]
+    public GameObject scrapYardFX;
+    public GameObject woodWorkingFX;
+    public GameObject mayorFX1;
+    public GameObject mayorFX2;
 
     [HideInInspector]public int _restorableResources;
 
@@ -149,6 +154,35 @@ public class H_Building : MonoBehaviour
 
     public void UpdateUI()
     {
+
+        switch (buildingLevel)
+        {
+            case >= 5:
+                if (buildingAndResourceType == 2)
+                {
+                    scrapYardFX.SetActive(true);
+                }
+                break;
+            case >= 4:
+                if (buildingAndResourceType == 1)
+                {
+                    woodWorkingFX.SetActive(true);
+                }
+                if (buildingAndResourceType == 0)
+                {
+                    mayorFX2.SetActive(true);
+                }
+                break;
+            case >= 3:
+                if (buildingAndResourceType == 0)
+                {
+                    mayorFX1.SetActive(true);
+                }
+                break;
+            default:
+                break;
+        }
+
         if (visibleUI)
         {
             //resourceCount.text = Mathf.FloorToInt(curResourceAmount).ToString() + " / " + resourceMaxAtLevel[buildingLevel].ToString();
