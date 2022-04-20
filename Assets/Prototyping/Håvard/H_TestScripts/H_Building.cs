@@ -172,8 +172,17 @@ public class H_Building : MonoBehaviour
                 resourceCount.gameObject.SetActive(true);
                 prototypeHelpText.gameObject.SetActive(true);
                 Collect.gameObject.SetActive(true);
-                miniGameButton.SetActive(true);
+                if (_resourceTracking.playerEnergyCurrent >= 5)
+                {
+                    miniGameButton.SetActive(true);
+                }
+                else
+                {
+                    miniGameButton.SetActive(false);
+                }
             }
+
+            
 
             if (curWorkers == workerMaxAtLevel[buildingLevel])
             {
@@ -474,8 +483,9 @@ public class H_Building : MonoBehaviour
     {
         if (visibleUI)
         {
-            if (buildingAndResourceType != 0)
+            if (buildingAndResourceType != 0 && _resourceTracking.playerEnergyCurrent >= 5)
             {
+                _resourceTracking.ExpendPlayerEnergy(5);
                 H_GameController gc = GameObject.Find("GameCore").gameObject.GetComponent<H_GameController>();
                 gc.ChangeScene(nameOfMinigameScene);
             }
