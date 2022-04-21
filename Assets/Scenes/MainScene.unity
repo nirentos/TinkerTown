@@ -3288,11 +3288,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3823295578262188436, guid: fb6ce340073688044820e31154efd481, type: 3}
       propertyPath: reqRes1ToUpgradeAtLevel.Array.data[4]
-      value: 1000
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 3823295578262188436, guid: fb6ce340073688044820e31154efd481, type: 3}
       propertyPath: reqRes1ToUpgradeAtLevel.Array.data[5]
-      value: 1000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 3823295578262188436, guid: fb6ce340073688044820e31154efd481, type: 3}
       propertyPath: reqRes2ToUpgradeAtLevel.Array.data[2]
@@ -3308,7 +3308,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3823295578262188436, guid: fb6ce340073688044820e31154efd481, type: 3}
       propertyPath: reqRes2ToUpgradeAtLevel.Array.data[5]
-      value: 100
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 3823295578262188436, guid: fb6ce340073688044820e31154efd481, type: 3}
       propertyPath: reqTownLevelToUpgradeAtLevel.Array.size
@@ -6536,7 +6536,7 @@ MonoBehaviour:
   layer2: {fileID: 1359751113}
   layer3: {fileID: 1915095291}
   demoEnd: {fileID: 1674044758}
-  playerEnergyCurrent: 100
+  playerEnergyCurrent: 30
   playerEnergyMaximum: 100
   avaliableWorkers: 15
   maxWorkersAtTownLevel: 0f0000001e0000001e0000001e0000001e000000
@@ -10084,8 +10084,44 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3823295578262188436, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: reqBuilding1LevelToUpgradeAtLevel.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3823295578262188436, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: reqBuilding1LevelToUpgradeAtLevel.Array.data[3]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3823295578262188436, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: reqBuilding1LevelToUpgradeAtLevel.Array.data[4]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3823295578262188436, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: reqBuilding1LevelToUpgradeAtLevel.Array.data[5]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3823295578262188436, guid: fb6ce340073688044820e31154efd481, type: 3}
       propertyPath: reqBuilding2LevelToUpgradeAtLevel.Array.data[0]
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3823295578262188436, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: reqBuilding2LevelToUpgradeAtLevel.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3823295578262188436, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: reqBuilding2LevelToUpgradeAtLevel.Array.data[2]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3823295578262188436, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: reqBuilding2LevelToUpgradeAtLevel.Array.data[3]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3823295578262188436, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: reqBuilding2LevelToUpgradeAtLevel.Array.data[4]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3823295578262188436, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: reqBuilding2LevelToUpgradeAtLevel.Array.data[5]
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5229858769582703531, guid: fb6ce340073688044820e31154efd481, type: 3}
       propertyPath: m_Name
@@ -11669,8 +11705,32 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3823295578262188436, guid: fb6ce340073688044820e31154efd481, type: 3}
-      propertyPath: reqBuilding2LevelToUpgradeAtLevel.Array.data[2]
+      propertyPath: reqBuilding1LevelToUpgradeAtLevel.Array.data[2]
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3823295578262188436, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: reqBuilding1LevelToUpgradeAtLevel.Array.data[3]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3823295578262188436, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: reqBuilding1LevelToUpgradeAtLevel.Array.data[4]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3823295578262188436, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: reqBuilding2LevelToUpgradeAtLevel.Array.data[2]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3823295578262188436, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: reqBuilding3LevelToUpgradeAtLevel.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3823295578262188436, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: reqBuilding3LevelToUpgradeAtLevel.Array.data[3]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3823295578262188436, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: reqBuilding3LevelToUpgradeAtLevel.Array.data[4]
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5229858769582703531, guid: fb6ce340073688044820e31154efd481, type: 3}
       propertyPath: m_Name

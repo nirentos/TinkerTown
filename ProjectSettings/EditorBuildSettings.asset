@@ -11,12 +11,12 @@ EditorBuildSettings:
   - enabled: 0
     path: "Assets/Prototyping/H\xE5vard/H_TestScene.unity"
     guid: caf4010f6a59ac04aabacce613b4370f
-  - enabled: 0
-    path: Assets/MiniGames/minigameWoodWorking.unity
-    guid: 3a1b73a9b1c30b94e977866fa700b6b1
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 3fc8acdd13e6c734bafef6554d6fdbcd
+  - enabled: 1
+    path: Assets/MiniGames/minigameWoodWorking.unity
+    guid: 3a1b73a9b1c30b94e977866fa700b6b1
   - enabled: 1
     path: Assets/MiniGames/minigameSteelWorking.unity
     guid: 183d1d385c3173242ad13f3b4662661d

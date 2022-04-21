@@ -261,6 +261,7 @@ public class H_Building : MonoBehaviour
 
             if (buildingAndResourceType == 0)
             {
+
                 if (!buildingN1_UpgradeReqUI[reqBuilding2LevelToUpgradeAtLevel[buildingLevel]].enabled || buildingN1_UpgradeReqUI[reqBuilding2LevelToUpgradeAtLevel[buildingLevel] + 1].enabled)
                 {
                     for (int i = 1; i < buildingN1_UpgradeReqUI.Length; i++)
@@ -293,14 +294,15 @@ public class H_Building : MonoBehaviour
 
                 for (int i = 0; i < buildingN1_UpgradeReqUI.Length; i++)
                 {
-                    if (buildingSpriteCollection[1].Length < i)
+                    if (buildingSpriteCollection[1].Length > i)
                     {
                         buildingN1_UpgradeReqUI[i].sprite = buildingSpriteCollection[1][i];
+                        Debug.Log("attempted to change upgrade requirement building sprite");
                     }
                 }
-                for (int i = 0; i < buildingN1_UpgradeReqUI.Length; i++)
+                for (int i = 0; i < buildingN2_UpgradeReqUI.Length; i++)
                 {
-                    if (buildingSpriteCollection[2].Length < i)
+                    if (buildingSpriteCollection[2].Length > i)
                     {
                         buildingN2_UpgradeReqUI[i].sprite = buildingSpriteCollection[2][i];
                     }
@@ -340,14 +342,14 @@ public class H_Building : MonoBehaviour
 
                 for (int i = 0; i < buildingN1_UpgradeReqUI.Length; i++)
                 {
-                    if (buildingSpriteCollection[0].Length < i)
+                    if (buildingSpriteCollection[0].Length > i)
                     {
                         buildingN1_UpgradeReqUI[i].sprite = buildingSpriteCollection[0][i];
                     }
                 }
                 for (int i = 0; i < buildingN1_UpgradeReqUI.Length; i++)
                 {
-                    if (buildingSpriteCollection[2].Length < i)
+                    if (buildingSpriteCollection[2].Length > i)
                     {
                         buildingN2_UpgradeReqUI[i].sprite = buildingSpriteCollection[2][i];
                     }
@@ -387,14 +389,14 @@ public class H_Building : MonoBehaviour
 
                 for (int i = 0; i < buildingN1_UpgradeReqUI.Length; i++)
                 {
-                    if (buildingSpriteCollection[0].Length < i)
+                    if (buildingSpriteCollection[0].Length > i)
                     {
                         buildingN1_UpgradeReqUI[i].sprite = buildingSpriteCollection[0][i];
                     }
                 }
                 for (int i = 0; i < buildingN1_UpgradeReqUI.Length; i++)
                 {
-                    if (buildingSpriteCollection[1].Length < i)
+                    if (buildingSpriteCollection[1].Length > i)
                     {
                         buildingN2_UpgradeReqUI[i].sprite = buildingSpriteCollection[1][i];
                     }
