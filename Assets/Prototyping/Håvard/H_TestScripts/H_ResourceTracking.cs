@@ -124,16 +124,20 @@ public class H_ResourceTracking : MonoBehaviour
 
     public void Restore()
     {
-        hardCurrency = PlayerPrefs.GetInt("hardCurrency");
-        playerEnergyCurrent = PlayerPrefs.GetInt("playerEnergy");
-        townLevel = PlayerPrefs.GetInt("townLevel");
-        avaliableWorkers = PlayerPrefs.GetInt("avaliableWorkers");
-        for (int i = 0; i < curResources.Length; i++)
+        if (PlayerPrefs.HasKey("hardCurrency"))
         {
-            curResources[i] = PlayerPrefs.GetInt("Tracking of Resource " + i.ToString());
-        }
+            hardCurrency = PlayerPrefs.GetInt("hardCurrency");
+            playerEnergyCurrent = PlayerPrefs.GetInt("playerEnergy");
+            townLevel = PlayerPrefs.GetInt("townLevel");
+            avaliableWorkers = PlayerPrefs.GetInt("avaliableWorkers");
+            for (int i = 0; i < curResources.Length; i++)
+            {
+                curResources[i] = PlayerPrefs.GetInt("Tracking of Resource " + i.ToString());
+            }
 
-        Debug.Log("Resource Tracking has been Restored");
+            Debug.Log("Resource Tracking has been Restored");
+        }
+        
     }
 
     public void OfflineCollection(int timePassed, H_Building[] h_BuildingsAr)

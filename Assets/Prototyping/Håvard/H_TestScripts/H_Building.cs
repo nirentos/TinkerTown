@@ -548,23 +548,27 @@ public class H_Building : MonoBehaviour
 
     public void Restore()
     {
-        int buildingLvl = PlayerPrefs.GetInt("building " + buildingAndResourceType.ToString() + "buildingLevel");
-        float resourcesToRestore = PlayerPrefs.GetFloat("building " + buildingAndResourceType.ToString() + " curResourceAmount");
-        int workersToRestore = PlayerPrefs.GetInt("building " + buildingAndResourceType.ToString() + " curworkers");
-
-        buildingLevel = buildingLvl;
-        curResourceAmount = resourcesToRestore;
-        curWorkers = workersToRestore;
-
-        if (buildingLevel > 0)
+        if (PlayerPrefs.HasKey("building " + buildingAndResourceType.ToString() + "buildingLevel"))
         {
-            buildingDisp[0].gameObject.SetActive(false);
-            for (int i = 1; i <= buildingLevel; i++)
+            int buildingLvl = PlayerPrefs.GetInt("building " + buildingAndResourceType.ToString() + "buildingLevel");
+            float resourcesToRestore = PlayerPrefs.GetFloat("building " + buildingAndResourceType.ToString() + " curResourceAmount");
+            int workersToRestore = PlayerPrefs.GetInt("building " + buildingAndResourceType.ToString() + " curworkers");
+
+            buildingLevel = buildingLvl;
+            curResourceAmount = resourcesToRestore;
+            curWorkers = workersToRestore;
+
+            if (buildingLevel > 0)
             {
-                buildingDisp[i].gameObject.SetActive(true);
+                buildingDisp[0].gameObject.SetActive(false);
+                for (int i = 1; i <= buildingLevel; i++)
+                {
+                    buildingDisp[i].gameObject.SetActive(true);
+                }
             }
+            //Debug.Log("attempted to restore building information");
         }
-        //Debug.Log("attempted to restore building information");
+        
     }
 
     public void RestoreProductionTime(int passedTime)

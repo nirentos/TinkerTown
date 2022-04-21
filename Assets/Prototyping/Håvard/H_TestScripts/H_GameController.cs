@@ -127,21 +127,25 @@ public class H_GameController : MonoBehaviour
 
     public void Restore()
     {
-        string timeOfExit = PlayerPrefs.GetString("Game quit at");
-
-        var curDate = System.DateTime.Now;
-
-        System.TimeSpan duration = curDate - System.DateTime.Parse(timeOfExit);
-
-        var passedTimeInSeconds = Mathf.FloorToInt((float)duration.TotalSeconds);
-
-        for (int i = 0; i < _buildingScr.Length; i++)
+        if (PlayerPrefs.HasKey("Game quit at"))
         {
-            _buildingScr[i].RestoreProductionTime(passedTimeInSeconds);
+            string timeOfExit = PlayerPrefs.GetString("Game quit at");
+
+            var curDate = System.DateTime.Now;
+
+            System.TimeSpan duration = curDate - System.DateTime.Parse(timeOfExit);
+
+            var passedTimeInSeconds = Mathf.FloorToInt((float)duration.TotalSeconds);
+
+            for (int i = 0; i < _buildingScr.Length; i++)
+            {
+                _buildingScr[i].RestoreProductionTime(passedTimeInSeconds);
+            }
+
+
+            //resourceTracking.OfflineCollection(passedTimeInSeconds, _buildingScr);
         }
-
-
-        //resourceTracking.OfflineCollection(passedTimeInSeconds, _buildingScr);
+        
     }
 
     public void ChangeScene(string sceneToLoad)
@@ -170,14 +174,14 @@ public class H_GameController : MonoBehaviour
 
     IEnumerator WaitToChangeScene(string sceneToLoad)
     {
-        yield return new WaitForSecondsRealtime(2);
+        yield return new WaitForSecondsRealtime(1);
 
         SceneManager.LoadScene(sceneToLoad);
     }
 
     IEnumerator WaitForMiniGameGains()
     {
-        yield return new WaitForSecondsRealtime(5);
+        yield return new WaitForSecondsRealtime(1);
 
         GameObject miniGameGains = GameObject.Find("resourceGains(Clone)").gameObject;
         int resType = miniGameGains.GetComponent<resourceGain>().resourceType;
