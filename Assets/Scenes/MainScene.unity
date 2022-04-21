@@ -1154,7 +1154,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.75
+  m_MatchWidthOrHeight: 0.25
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -3377,6 +3377,22 @@ PrefabInstance:
     - target: {fileID: 5229858769582703531, guid: fb6ce340073688044820e31154efd481, type: 3}
       propertyPath: m_Name
       value: BuildingVisual
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111780733133443890, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111780733133443890, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 220.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111780733133443890, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -144.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111780733133443892, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6111780733133443893, guid: fb6ce340073688044820e31154efd481, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -6539,7 +6555,7 @@ MonoBehaviour:
   playerEnergyCurrent: 30
   playerEnergyMaximum: 100
   avaliableWorkers: 15
-  maxWorkersAtTownLevel: 0f0000001e0000001e0000001e0000001e000000
+  maxWorkersAtTownLevel: 0f0000001e0000002d0000003c0000004b000000
   curResources: 0000000014000000000000000000000000000000
   idleWorkersTimeBetweenCollects: 30
 --- !u!114 &554039614
@@ -10127,6 +10143,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuildingVisual (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6111780733133443890, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111780733133443890, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 220.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111780733133443890, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -144.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111780733133443892, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6111780733133443893, guid: fb6ce340073688044820e31154efd481, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 4
@@ -11735,6 +11767,22 @@ PrefabInstance:
     - target: {fileID: 5229858769582703531, guid: fb6ce340073688044820e31154efd481, type: 3}
       propertyPath: m_Name
       value: BuildingVisual (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111780733133443890, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111780733133443890, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 220.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111780733133443890, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -144.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111780733133443892, guid: fb6ce340073688044820e31154efd481, type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6111780733133443893, guid: fb6ce340073688044820e31154efd481, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

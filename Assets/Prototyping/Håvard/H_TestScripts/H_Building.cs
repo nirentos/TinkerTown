@@ -488,6 +488,7 @@ public class H_Building : MonoBehaviour
             if (buildingAndResourceType == 0)
             {
                 _resourceTracking.townLevel = buildingLevel;
+                _resourceTracking.avaliableWorkers += 5*buildingLevel;
             }
         }
         
