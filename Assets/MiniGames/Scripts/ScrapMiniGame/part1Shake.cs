@@ -29,7 +29,7 @@ public class part1Shake : MonoBehaviour
     {
         timer++;
 
-        if (Vector3.Magnitude(inputManager.GetPhoneGyro()) >= 5f || inputManager.GetPlayerTap())
+        if (Vector3.Magnitude(inputManager.GetPhoneGyro()) >= 5f)
         {
             shakes++;
             soundPooler.GetComponent<soundPooler>().playSound();
