@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "0413014302091000514f",
+    "m_SelectedDeviceId": "RF8M41K86CZ",
     "m_SelectedPackage": {
-        "deviceId": "0413014302091000514f",
+        "deviceId": "RF8M41K86CZ",
         "name": "com.DefaultCompany.com.unity.template.mobile2D",
-        "processId": 16993,
+        "processId": 28932,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -18,24 +18,6 @@
             "deviceId": "HQ616519DC",
             "name": "com.DefaultCompany.com.unity.template.mobile2D",
             "processId": 30229,
-            "exited": false
-        },
-        {
-            "deviceId": "HQ616519DC",
-            "name": "com.DefaultCompany.com.unity.template.mobile2D",
-            "processId": 5043,
-            "exited": false
-        },
-        {
-            "deviceId": "HQ616519DC",
-            "name": "com.DefaultCompany.com.unity.template.mobile2D",
-            "processId": 7210,
-            "exited": false
-        },
-        {
-            "deviceId": "HQ616519DC",
-            "name": "com.DefaultCompany.com.unity.template.mobile2D",
-            "processId": 14736,
             "exited": false
         },
         {
@@ -87,22 +69,34 @@
             "exited": false
         },
         {
-            "deviceId": "0413014302091000514f",
+            "deviceId": "RF8M41K86CZ",
             "name": "com.DefaultCompany.com.unity.template.mobile2D",
-            "processId": 12017,
+            "processId": 25774,
             "exited": false
         },
         {
-            "deviceId": "0413014302091000514f",
+            "deviceId": "RF8M41K86CZ",
             "name": "com.DefaultCompany.com.unity.template.mobile2D",
-            "processId": 12534,
+            "processId": 27202,
             "exited": false
         },
         {
-            "deviceId": "0413014302091000514f",
+            "deviceId": "RF8M41K86CZ",
             "name": "com.DefaultCompany.com.unity.template.mobile2D",
-            "processId": 16993,
+            "processId": 27414,
             "exited": false
+        },
+        {
+            "deviceId": "RF8M41K86CZ",
+            "name": "com.DefaultCompany.com.unity.template.mobile2D",
+            "processId": 28932,
+            "exited": false
+        },
+        {
+            "deviceId": "emulator-5554",
+            "name": "com.stove.epic7.google",
+            "processId": 4947,
+            "exited": true
         }
     ],
     "m_Tags": {
